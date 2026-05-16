@@ -17,7 +17,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 #include "DomainNode.h"
-#include <inet/networklayer/common/L3AddressTag_m.h>
 
 Define_Module(DomainNode);
 
@@ -135,11 +134,8 @@ void DomainNode::initialize(int stage)
     // ── Étape 2 : réseau prêt → socket et timers ────────────────────────────
     if (stage == 1) {
 
-        // Socket UDP broadcast
-        socket.setOutputGate(gate("socketOut"));
-        socket.setCallback(this);
-        socket.bind(UDP_PORT);
-        socket.setBroadcast(true);
+        // Pas de socket UDP — communication via sendDirect()
+        // Les voisins sont identifiés via getParentModule()
 
         // Timer de synchronisation phéromonale
         // Jitter initial pour éviter les collisions au démarrage
@@ -195,7 +191,21 @@ void DomainNode::handleMessage(cMessage *msg)
     }
     else {
         // Message réseau entrant → délégué au socket UDP
-        socket.processMessage(msg);
+        // Message direct d'un voisin DomainNode
+        if (strcmp(msg->getName(), "PheromoneUpdate") == 0) {
+            cMessage *pheromoneMsg = msg;
+            PheromonePayload pl;
+            pl.srcDomainId    = (int)pheromoneMsg->par("srcDomainId").longValue();
+            pl.tauValue       = pheromoneMsg->par("tauValue").doubleValue();
+            pl.deceptionEffort = pheromoneMsg->par("deceptionEffort").doubleValue();
+            pl.narrative      = (char)pheromoneMsg->par("narrative").longValue();
+            pl.beliefEntropy  = pheromoneMsg->par("beliefEntropy").doubleValue();
+            pl.timestamp      = SimTime(pheromoneMsg->par("timestamp").doubleValue());
+            handlePheromoneMessage(pl);
+            delete msg;
+        } else {
+            delete msg;
+        }
     }
 }
 
@@ -276,8 +286,7 @@ void DomainNode::triggerNodeFailure()
     double deltaH = hAtLastCheckpoint - hNow;
     emit(sig_performanceDrop, deltaH);
 
-    // Arrêt propre du socket
-    socket.close();
+    // Nœud arrêté
     cancelEvent(syncTimer);
     cancelEvent(metricsTimer);
     cancelEvent(neighborTimeout);
@@ -659,25 +668,33 @@ void DomainNode::broadcastPheromoneUpdate()
 {
     PheromonePayload pl = serializeLocalState();
 
-    // Création du paquet OMNeT++
-    auto pkt  = new Packet("PheromoneUpdate");
-    auto data = makeShared<ByteCountChunk>(B(PAYLOAD_BYTES));
-    pkt->insertAtBack(data);
+    // Envoyer directement à chaque domaine voisin via sendDirect()
+    cModule *net = getParentModule();
+    if (!net) return;
 
-    // Annotation du temps de création pour mesurer sync_delay côté récepteur
-    pkt->setTimestamp(simTime());
+    for (int d = 0; d < numDomains; d++) {
+        if (d == domainId) continue;
+        cModule *dest = net->getSubmodule("domain", d);
+        if (!dest) continue;
 
-    // Broadcast UDP 255.255.255.255
-    socket.sendTo(pkt, Ipv4Address::ALLONES_ADDRESS, UDP_PORT);
+        // Créer un message OMNeT++ avec les données phéromonales en paramètres
+        cMessage *msg = new cMessage("PheromoneUpdate");
+        msg->addPar("srcDomainId")    = (long)pl.srcDomainId;
+        msg->addPar("tauValue")       = pl.tauValue;
+        msg->addPar("deceptionEffort") = pl.deceptionEffort;
+        msg->addPar("narrative")      = (long)pl.narrative;
+        msg->addPar("beliefEntropy")  = pl.beliefEntropy;
+        msg->addPar("timestamp")      = pl.timestamp.dbl();
 
-    // Métriques réseau
+        // sendDirect : pas de gate nécessaire
+        sendDirect(msg, dest, "directIn");
+    }
+
     emitNetworkMetrics(PAYLOAD_BYTES);
 
     EV_DETAIL << "[DomainNode] domain=" << domainId
-              << " BROADCAST τ=" << pl.tauValue
-              << " x=" << pl.deceptionEffort
+              << " DIRECT τ=" << pl.tauValue
               << " narrative=" << pl.narrative
-              << " H=" << pl.beliefEntropy
               << endl;
 }
 
@@ -705,67 +722,26 @@ PheromonePayload DomainNode::serializeLocalState() const
 // et on reconstitue un payload synthétique basé sur l'adresse source.
 // Un vrai déploiement utiliserait un FieldsChunk personnalisé.
 // ─────────────────────────────────────────────────────────────────────────────
-PheromonePayload DomainNode::deserializePayload(Packet *pkt) const
-{
-    PheromonePayload pl;
-
-    // Récupération de l'adresse source via le tag L3AddressInd (INET)
-    // L3AddressInd est dans inet/networklayer/common/L3AddressTag_m.h
-    auto addrTag = pkt->findTag<inet::L3AddressInd>();
-    if (addrTag != nullptr) {
-        auto srcAddr = addrTag->getSrcAddress().toIpv4();
-        int lastOctet = srcAddr.getInt() & 0xFF;
-        pl.srcDomainId = std::max(0, lastOctet - 1);
-    } else {
-        pl.srcDomainId = -1; // Inconnu
-    }
-
-    // Heure d'émission (timestamp) pour calcul sync_delay
-    pl.timestamp = pkt->getTimestamp();
-
-    // Valeurs phéromonales : en simulation pure, on les injecte via
-    // un paramètre de module virtuel ou via un FieldsChunk.
-    // Ici on utilise une valeur synthétique dérivée du timestamp pour
-    // avoir de la variabilité (à remplacer par une vraie désérialisation).
-    pl.tauValue       = 0.5 + 0.3 * std::sin(pl.timestamp.dbl() * 0.1 + pl.srcDomainId);
-    pl.deceptionEffort = budgetTotal / numDomains;
-    pl.narrative      = 'A';
-    pl.beliefEntropy  = log2(NUM_GOALS) * 0.8;
-
-    return pl;
-}
 
 // ═════════════════════════════════════════════════════════════════════════════
 // Réception d'un paquet phéromonal UDP
 // ═════════════════════════════════════════════════════════════════════════════
-void DomainNode::socketDataArrived(UdpSocket *sock, Packet *pkt)
+void DomainNode::handlePheromoneMessage(const PheromonePayload &pl)
 {
     simtime_t rxTime = simTime();
 
-    // Désérialisation
-    PheromonePayload pl = deserializePayload(pkt);
+    if (pl.srcDomainId == domainId || pl.srcDomainId < 0) return;
 
-    // Ignorer nos propres broadcasts
-    if (pl.srcDomainId == domainId) {
-        delete pkt;
-        return;
-    }
-
-    // ── Détection d'injection adverse (R_spoof) ──────────────────────────────
+    // Détection d'injection adverse
     double spoofProb = estimateSpoofProbability(pl.tauValue);
     emit(sig_spoofDetection, spoofProb);
-
     if (spoofProb > 0.85) {
-        // Paquet suspect : on l'ignore et on alerte
         EV_WARN << "[DomainNode] domain=" << domainId
-                << " INJECTION SUSPECTÉE de domaine " << pl.srcDomainId
-                << " τ=" << pl.tauValue
-                << " P_spoof=" << spoofProb << endl;
-        delete pkt;
+                << " INJECTION SUSPECTÉE de " << pl.srcDomainId << endl;
         return;
     }
 
-    // ── Mise à jour de la table des voisins ──────────────────────────────────
+    // Mise à jour table des voisins
     NeighborState &nb = neighbors[pl.srcDomainId];
     nb.domainId      = pl.srcDomainId;
     nb.tau           = pl.tauValue;
@@ -774,45 +750,20 @@ void DomainNode::socketDataArrived(UdpSocket *sock, Packet *pkt)
     nb.beliefEntropy = pl.beliefEntropy;
     nb.lastSeen      = rxTime;
     nb.alive         = true;
-
-    // Mise à jour de la fiabilité ω via filtre exponentiel
-    // ω_new = α·ω_old + (1-α)·1.0  (renforcement à chaque réception réussie)
     const double alpha = 0.9;
-    nb.omega = alpha * nb.omega + (1.0 - alpha) * 1.0;
-    if (nb.omega == 0.0) nb.omega = omegaDefault; // Init première fois
+    nb.omega = (nb.omega == 0.0) ? omegaDefault : alpha * nb.omega + (1.0-alpha);
 
-    // ── Mise à jour bayésienne b_t(g) ────────────────────────────────────────
+    // Mise à jour bayésienne
     updateBeliefBayesian(pl);
 
-    // ── sync_delay_ms ─────────────────────────────────────────────────────────
+    // sync_delay
     double delayMs = (rxTime - pl.timestamp).dbl() * 1000.0;
-    if (delayMs >= 0.0) {
-        emit(sig_syncDelay, delayMs);
-    }
-
-    EV_DETAIL << "[DomainNode] domain=" << domainId
-              << " ← voisin " << pl.srcDomainId
-              << " τ=" << pl.tauValue
-              << " narrative=" << pl.narrative
-              << " delay=" << delayMs << "ms"
-              << " H_local=" << computeBeliefEntropy() << " bits"
-              << endl;
-
-    delete pkt;
+    if (delayMs >= 0.0) emit(sig_syncDelay, delayMs);
 }
+
 
 // ─────────────────────────────────────────────────────────────────────────────
-void DomainNode::socketErrorArrived(UdpSocket *sock, Indication *ind)
-{
-    EV_WARN << "[DomainNode] domain=" << domainId
-            << " socket error : " << ind->getName() << endl;
-    delete ind;
-}
 
-void DomainNode::socketClosed(UdpSocket *sock)
-{
-    EV_INFO << "[DomainNode] domain=" << domainId << " socket closed" << endl;
-}
 
 // ═════════════════════════════════════════════════════════════════════════════
 // Fin de simulation : scalaires de synthèse

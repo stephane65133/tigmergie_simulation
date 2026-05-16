@@ -75,7 +75,6 @@ simple DomainNode
         @statistic[gracefulDegradation](checkSignals=false; title="Degradation gracieuse"; source=gracefulDegradation; record=vector,mean; unit="bits/loss_unit"; interpolationmode=linear);
 
     gates:
-        // Gates UDP pour la communication stigmergique
-        input  socketIn;
-        output socketOut;
+        // Gate pour la reception de messages directs (sendDirect)
+        input directIn @directIn;
 }

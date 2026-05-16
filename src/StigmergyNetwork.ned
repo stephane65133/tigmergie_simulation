@@ -1,16 +1,26 @@
 package stigmergie;
 
-import inet.environment.common.PhysicalEnvironment;
-import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
-import inet.physicallayer.wireless.ieee80211.packetlevel.Ieee80211ScalarRadioMedium;
-import inet.visualizer.canvas.integrated.IntegratedCanvasVisualizer;
+// =============================================================================
+// StigmergyNetwork.ned — PATCHED
+//
+// SUPPRIMÉ : imports INET (AdhocHost, Ieee80211ScalarRadioMedium,
+//            IntegratedCanvasVisualizer, PhysicalEnvironment, Ipv4NetworkConfigurator)
+// RAISON   : DomainNode est un "simple" module pur OMNeT++ qui communique
+//            via sendDirect() uniquement. Les gates INET (socketOut, wlan, etc.)
+//            n'existent pas sur ce type de module → erreur à l'init.
+//
+// Architecture retenue :
+//   - DomainNode    : simple module, sendDirect() vers directIn
+//   - PheromoneField, AdversaryModel, MetricsCollector : simples modules globaux
+//   - Communication : sendDirect(msg, dest, "directIn") dans DomainNode.cc
+// =============================================================================
 
 network StigmergyNetwork
 {
     parameters:
         int    numDomains      = default(6);
-        double packetLoss      = default(0.0);
-        double jammingProb     = default(0.0);
+        double packetLoss      = default(0.0);   // abstrait : lu par DomainNode
+        double jammingProb     = default(0.0);   // transmis à PheromoneField
         double nodeFailureRate = default(0.0);
         double latencyMeanMs   = default(100);
         double latencyStdMs    = default(30);
@@ -18,33 +28,18 @@ network StigmergyNetwork
         @display("bgb=1050,750");
 
     submodules:
-        radioMedium: Ieee80211ScalarRadioMedium {
-            @display("p=820,60;i=misc/sun");
-        }
-        configurator: Ipv4NetworkConfigurator {
-            addStaticRoutes  = true;
-            addDefaultRoutes = false;
-            addSubnetRoutes  = false;
-            @display("p=820,160;i=block/cogwheel");
-        }
-        visualizer: IntegratedCanvasVisualizer {
-            @display("p=820,260;i=block/app");
-        }
-        physicalEnvironment: PhysicalEnvironment {
-            @display("p=820,340;i=misc/building");
-        }
         pheromoneField: PheromoneField {
             numDomains  = parent.numDomains;
             jammingProb = parent.jammingProb;
-            @display("p=820,420;i=block/table2");
+            @display("p=820,150;i=block/table2");
         }
         adversary: AdversaryModel {
             numDomains = parent.numDomains;
-            @display("p=820,500;i=block/cogwheel");
+            @display("p=820,280;i=block/cogwheel");
         }
         metricsCollector: MetricsCollector {
             numDomains = parent.numDomains;
-            @display("p=820,580;i=block/table");
+            @display("p=820,410;i=block/table");
         }
         domain[numDomains]: DomainNode {
             domainId        = index;
@@ -55,9 +50,15 @@ network StigmergyNetwork
         }
 
     connections allowunconnected:
+        // Pas de connexion câblée : communication via sendDirect()
 }
 
 
+// =============================================================================
+// StigmergyNetworkWired — version avec canaux explicites (backup)
+// Utilise ethg++ sur DomainNode → nécessite d'ajouter la gate ethg dans DomainNode.ned
+// si vous souhaitez l'activer.
+// =============================================================================
 network StigmergyNetworkWired
 {
     parameters:
@@ -76,12 +77,9 @@ network StigmergyNetworkWired
         }
 
     submodules:
-        configurator: Ipv4NetworkConfigurator {
-            @display("p=820,60;i=block/cogwheel");
-        }
         pheromoneField: PheromoneField {
             numDomains = parent.numDomains;
-            @display("p=820,140;i=block/table2");
+            @display("p=820,100;i=block/table2");
         }
         adversary: AdversaryModel {
             numDomains = parent.numDomains;
@@ -89,7 +87,7 @@ network StigmergyNetworkWired
         }
         metricsCollector: MetricsCollector {
             numDomains = parent.numDomains;
-            @display("p=820,300;i=block/table");
+            @display("p=820,340;i=block/table");
         }
         domain[numDomains]: DomainNode {
             domainId        = index;
@@ -99,19 +97,6 @@ network StigmergyNetworkWired
             @display("i=device/server2;is=l");
         }
 
-    connections:
-        for i=1..numDomains-1 {
-            domain[0].ethg++ <--> StigmergyChannel { per = parent.packetLoss; }
-                             <--> domain[i].ethg++;
-        }
-        domain[1].ethg++ <--> StigmergyChannel { per = packetLoss; }
-                         <--> domain[2].ethg++ if numDomains > 2;
-        domain[2].ethg++ <--> StigmergyChannel { per = packetLoss; }
-                         <--> domain[3].ethg++ if numDomains > 3;
-        domain[3].ethg++ <--> StigmergyChannel { per = packetLoss; }
-                         <--> domain[4].ethg++ if numDomains > 4;
-        domain[4].ethg++ <--> StigmergyChannel { per = packetLoss; }
-                         <--> domain[5].ethg++ if numDomains > 5;
-        domain[5].ethg++ <--> StigmergyChannel { per = packetLoss; }
-                         <--> domain[1].ethg++ if numDomains > 5;
+    connections allowunconnected:
+        // Connexions wired désactivées tant que ethg n'est pas dans DomainNode.ned
 }

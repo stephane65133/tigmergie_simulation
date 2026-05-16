@@ -26,12 +26,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 #include <omnetpp.h>
-#include <inet/transportlayer/contract/udp/UdpSocket.h>
-#include <inet/networklayer/common/L3AddressResolver.h>
-#include <inet/networklayer/ipv4/Ipv4Header_m.h>
-#include <inet/common/packet/Packet.h>
-#include <inet/common/packet/chunk/ByteCountChunk.h>
-#include <inet/common/INETDefs.h>
+// INET supprimé : DomainNode communique via sendDirect() uniquement
 
 #include <vector>
 #include <map>
@@ -43,7 +38,6 @@
 #include <sstream>
 
 using namespace omnetpp;
-using namespace inet;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Constantes globales
@@ -85,7 +79,7 @@ struct NeighborState {
 // ─────────────────────────────────────────────────────────────────────────────
 // Classe principale DomainNode
 // ─────────────────────────────────────────────────────────────────────────────
-class DomainNode : public cSimpleModule, public UdpSocket::ICallback
+class DomainNode : public cSimpleModule
 {
   // ── Déclaration du module OMNeT++ ────────────────────────────────────────
   protected:
@@ -153,8 +147,6 @@ class DomainNode : public cSimpleModule, public UdpSocket::ICallback
     // ── Synchronisation réseau ───────────────────────────────────────────────
     simtime_t syncInterval;
 
-    // ── Socket UDP ───────────────────────────────────────────────────────────
-    UdpSocket socket;
 
     // ── Timers ───────────────────────────────────────────────────────────────
     cMessage *syncTimer       = nullptr;
@@ -225,14 +217,11 @@ class DomainNode : public cSimpleModule, public UdpSocket::ICallback
     double estimateSpoofProbability(double incomingTau) const;
 
     // ── Communication UDP ─────────────────────────────────────────────────────
-    void broadcastPheromoneUpdate();
+    void broadcastPheromoneUpdate();  // via sendDirect()
+    void handlePheromoneMessage(const PheromonePayload &pl);  // traitement message entrant
     PheromonePayload serializeLocalState() const;
-    PheromonePayload deserializePayload(Packet *pkt) const;
 
-    // ── UdpSocket::ICallback ──────────────────────────────────────────────────
-    virtual void socketDataArrived(UdpSocket *sock, Packet *pkt) override;
-    virtual void socketErrorArrived(UdpSocket *sock, Indication *ind) override;
-    virtual void socketClosed(UdpSocket *sock) override;
+
 
     // ── Utilitaires ───────────────────────────────────────────────────────────
     void   parseNarrativeOptions(const std::string &optStr);

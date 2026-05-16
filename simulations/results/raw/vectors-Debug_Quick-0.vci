@@ -1,9 +1,9 @@
-file 27866 1778960137                                           
+                                                                
 version 3
-run Debug_Quick-0-20260516-20:34:34-999068
+run Debug_Quick-0-20260516-23:14:18-1035396
 attr configname Debug_Quick
-attr datetime 20260516-20:34:34
-attr datetimef 20260516-203434
+attr datetime 20260516-23:14:18
+attr datetimef 20260516-231418
 attr experiment Debug_Quick
 attr inifile /home/lucky/Desktop/omnetpp-6.4.0/samples/stigmergie_fixed/simulations/omnetpp.ini
 attr iterationvars ""
@@ -11,7 +11,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network stigmergie.StigmergyNetwork
-attr processid 999068
+attr processid 1035396
 attr repetition 0
 attr replication #0
 attr resultdir results/raw
@@ -37,39 +37,6 @@ config **.rng-0 0
 config **.rng-1 1
 config **.rng-2 2
 config **.rng-3 3
-config *.radioMedium.typename Ieee80211ScalarRadioMedium
-config *.radioMedium.backgroundNoise.power -110dBm
-config *.radioMedium.propagation.typename ConstantSpeedPropagation
-config *.radioMedium.propagation.propagationSpeed 3e8mps
-config *.domain[*].wlan[0].typename Ieee80211Interface
-config *.domain[*].wlan[0].radio.typename Ieee80211ScalarRadio
-config *.domain[*].wlan[0].radio.transmitter.power 20mW
-config *.domain[*].wlan[0].radio.transmitter.bitrate 11Mbps
-config *.domain[*].wlan[0].radio.receiver.sensitivity -85dBm
-config *.domain[*].wlan[0].radio.receiver.snirThreshold 4dB
-config *.domain[*].wlan[0].radio.centerFrequency 2.4GHz
-config *.domain[*].wlan[0].radio.bandwidth 20MHz
-config *.domain[*].wlan[0].mac.typename Ieee80211Mac
-config *.domain[*].wlan[0].mac.modeSet "\"g(mixed)\""
-config *.domain[*].wlan[0].mgmt.typename Ieee80211MgmtAdhoc
-config *.domain[*].wlan[0].agent.typename ""
-config *.domain[*].mobility.typename StationaryMobility
-config *.domain[*].mobility.constraintAreaMinX 0m
-config *.domain[*].mobility.constraintAreaMinY 0m
-config *.domain[*].mobility.constraintAreaMaxX 900m
-config *.domain[*].mobility.constraintAreaMaxY 700m
-config *.domain[0].mobility.initialX 450m
-config *.domain[0].mobility.initialY 350m
-config *.domain[1].mobility.initialX 450m
-config *.domain[1].mobility.initialY 160m
-config *.domain[2].mobility.initialX 620m
-config *.domain[2].mobility.initialY 255m
-config *.domain[3].mobility.initialX 620m
-config *.domain[3].mobility.initialY 445m
-config *.domain[4].mobility.initialX 450m
-config *.domain[4].mobility.initialY 540m
-config *.domain[5].mobility.initialX 280m
-config *.domain[5].mobility.initialY 445m
 config *.numDomains 6
 config *.packetLoss 0.0
 config *.jammingProb 0.0
@@ -142,10 +109,6 @@ config **.fieldEntropy.vector-recording true
 config **.globalConsistency.vector-recording true
 config **.fieldNorm.vector-recording true
 config **.evaporationLoss.vector-recording true
-config *.visualizer.*.displayLinks false
-config *.visualizer.*.displayRoutingTables false
-config *.visualizer.*.displayPacketDrops false
-config *.visualizer.*.mediumVisualizer.typename ""
 
 vector 0 StigmergyNetwork.pheromoneField fieldEntropy:vector ETV
 attr checkSignals false
@@ -774,53 +737,4 @@ attr unit dimensionless
 vector 93 StigmergyNetwork.domain[5] syncDelay:vector ETV
 attr checkSignals false
 attr interpolationmode none
-attr recordingmode vector
-attr source syncDelay
-attr title "Delai synchronisation (ms)"
-attr unit ms
-vector 94 StigmergyNetwork.domain[5] quorumTriggerSuccess:vector ETV
-attr checkSignals false
-attr interpolationmode none
-attr recordingmode vector
-attr source quorumTriggerSuccess
-attr title "Succes quorum narrative"
-attr unit ratio
-vector 95 StigmergyNetwork.domain[5] commOverhead:vector ETV
-attr checkSignals false
-attr interpolationmode linear
-attr recordingmode vector
-attr source commOverhead
-attr title "Surcharge reseau (bytes)"
-attr unit bytes
-vector 96 StigmergyNetwork.domain[5] infoLeak:vector ETV
-attr checkSignals false
-attr interpolationmode linear
-attr recordingmode vector
-attr source infoLeak
-attr title "Fuite informationnelle (nats)"
-attr unit nats
-vector 97 StigmergyNetwork.domain[5] spoofDetection:vector ETV
-attr checkSignals false
-attr interpolationmode none
-attr recordingmode vector
-attr source spoofDetection
-attr title "Detection injection adverse"
-attr unit ratio
-vector 98 StigmergyNetwork.domain[5] performanceDrop:vector ETV
-attr checkSignals false
-attr interpolationmode none
-attr recordingmode vector
-attr source performanceDrop
-attr title "Chute performance (delta H)"
-attr unit bits
-vector 99 StigmergyNetwork.domain[5] gracefulDegradation:vector ETV
-attr checkSignals false
-attr interpolationmode linear
-attr recordingmode vector
-attr source gracefulDegradation
-attr title "Degradation gracieuse"
-attr unit bits/loss_unit
-0	27813 17 0 0 0 0 1 2.5818407635256326 2.5818407635256326 2.5818407635256326 6.665901728202622
-4	27830 18 0 0 0 0 1 0.9712719591741835 0.9712719591741835 0.9712719591741835 0.9433692186780568
-5	27848 17 0 0 0 0 1 1.2251318530887714 1.2251318530887714 1.2251318530887714 1.500948057452727
-
+attr recordin

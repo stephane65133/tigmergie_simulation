@@ -227,13 +227,8 @@ void MetricsCollector::collectFromDomainNodes()
         // En OMNeT++ 6.x : dom->getResultRecorders() ou via signals
         // Approche portable : lire les paramètres courants du module
 
-        // deceptionEffort : x_d^t
-        cPar *effortPar = dom->findPar("deceptionEffort");
-        // Note : les paramètres @statistic ne sont pas directement lisibles
-        // comme cPar. En pratique, MetricsCollector s'abonne aux signaux
-        // émis par DomainNode via la subscription API d'OMNeT++.
-        // La collecte directe ci-dessous est une alternative pour les cas
-        // où les signaux ne sont pas disponibles.
+        // Les @statistic sont collectés via les signaux OMNeT++.
+        // Ici on lit uniquement les paramètres de configuration (cPar).
 
         // Lecture des paramètres configurés (stables pendant la sim)
         double costPerUnit = dom->par("costPerUnit");

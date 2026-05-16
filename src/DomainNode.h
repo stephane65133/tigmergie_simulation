@@ -191,7 +191,6 @@ class DomainNode : public cSimpleModule, public UdpSocket::ICallback
     // ── Lifecycle OMNeT++ ────────────────────────────────────────────────────
     virtual int  numInitStages() const override;
     virtual void initialize(int stage) override;
-    virtual void handleMessageWhenUp(cMessage *msg) override;
     virtual void finish() override;
 
     virtual void handleMessage(cMessage *msg) override;

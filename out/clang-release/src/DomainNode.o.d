@@ -79,7 +79,8 @@ out/clang-release//src/DomainNode.o: src/DomainNode.cc src/DomainNode.h \
   /home/lucky/Desktop/inet/src/inet/common/TagBase_m.h \
   /home/lucky/Desktop/inet/src/inet/networklayer/contract/ipv4/Ipv4Address_m.h \
   /home/lucky/Desktop/inet/src/inet/common/checksum/ChecksumMode_m.h \
-  /home/lucky/Desktop/inet/src/inet/common/ProtocolGroup.h
+  /home/lucky/Desktop/inet/src/inet/common/ProtocolGroup.h \
+  /home/lucky/Desktop/inet/src/inet/networklayer/common/L3AddressTag_m.h
 src/DomainNode.h:
 /home/lucky/Desktop/omnetpp-6.4.0/include/omnetpp.h:
 /home/lucky/Desktop/inet/src/inet/transportlayer/contract/udp/UdpSocket.h:
@@ -162,3 +163,4 @@ src/DomainNode.h:
 /home/lucky/Desktop/inet/src/inet/networklayer/contract/ipv4/Ipv4Address_m.h:
 /home/lucky/Desktop/inet/src/inet/common/checksum/ChecksumMode_m.h:
 /home/lucky/Desktop/inet/src/inet/common/ProtocolGroup.h:
+/home/lucky/Desktop/inet/src/inet/networklayer/common/L3AddressTag_m.h:

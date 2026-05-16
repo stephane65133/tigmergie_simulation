@@ -17,6 +17,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 #include "DomainNode.h"
+#include <inet/networklayer/common/L3AddressTag_m.h>
 
 Define_Module(DomainNode);
 
@@ -709,9 +710,9 @@ PheromonePayload DomainNode::deserializePayload(Packet *pkt) const
     PheromonePayload pl;
 
     // Récupération de l'adresse source via le tag L3AddressInd (INET)
-    if (auto *addrTag = pkt->findTag<L3AddressInd>()) {
-        // Mapping adresse IP → domainId :
-        // Par convention dans notre réseau 10.0.0.x/24, domainId = dernier octet - 1
+    // L3AddressInd est dans inet/networklayer/common/L3AddressTag_m.h
+    auto addrTag = pkt->findTag<inet::L3AddressInd>();
+    if (addrTag != nullptr) {
         auto srcAddr = addrTag->getSrcAddress().toIpv4();
         int lastOctet = srcAddr.getInt() & 0xFF;
         pl.srcDomainId = std::max(0, lastOctet - 1);
@@ -849,34 +850,6 @@ void DomainNode::finish()
             << "  node_alive     = " << (nodeAlive ? "YES" : "NO") << endl;
 
     cSimpleModule::finish();
-}
-
-// ═════════════════════════════════════════════════════════════════════════════
-// Lifecycle OMNeT++ (start / stop / crash)
-// ═════════════════════════════════════════════════════════════════════════════
-// REMOVED handleStartOperation
-{
-    if (!nodeAlive) return;
-    if (!syncTimer->isScheduled())
-        scheduleAt(simTime() + uniform(0.1, syncInterval.dbl()), syncTimer);
-    if (!metricsTimer->isScheduled())
-        scheduleAt(simTime() + 1.0, metricsTimer);
-}
-
-// REMOVED handleStopOperation
-{
-    cancelEvent(syncTimer);
-    cancelEvent(metricsTimer);
-    cancelEvent(neighborTimeout);
-    socket.close();
-}
-
-// REMOVED handleCrashOperation
-{
-    cancelEvent(syncTimer);
-    cancelEvent(metricsTimer);
-    cancelEvent(neighborTimeout);
-    socket.destroy();
 }
 
 // ═════════════════════════════════════════════════════════════════════════════

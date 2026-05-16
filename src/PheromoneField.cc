@@ -251,7 +251,7 @@ void PheromoneField::emitFieldStats()
     double omega    = getConsistencyPenalty();
     double nEdges   = std::max(1, (int)edges.size());
     double consist  = 1.0 - (omega / nEdges);
-    emit(sig_globalConsistency, clamp(consist));
+    emit(sig_globalConsistency, clip(consist, 0.0, 1.0));
 
     // fieldNorm : ||τ||_2
     emit(sig_fieldNorm, getFieldNorm());

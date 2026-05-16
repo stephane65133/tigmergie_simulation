@@ -1,5 +1,3 @@
-/out/
-.oppbuildspec
-.cproject
-.project
-.qtenvrc
+﻿out/
+simulations/results/
+results/

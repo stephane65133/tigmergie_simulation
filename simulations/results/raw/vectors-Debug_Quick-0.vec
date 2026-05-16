@@ -1,8 +1,8 @@
 version 3
-run Debug_Quick-0-20260516-20:29:45-995616
+run Debug_Quick-0-20260516-20:34:34-999068
 attr configname Debug_Quick
-attr datetime 20260516-20:29:45
-attr datetimef 20260516-202945
+attr datetime 20260516-20:34:34
+attr datetimef 20260516-203434
 attr experiment Debug_Quick
 attr inifile /home/lucky/Desktop/omnetpp-6.4.0/samples/stigmergie_fixed/simulations/omnetpp.ini
 attr iterationvars ""
@@ -10,7 +10,7 @@ attr iterationvarsd ""
 attr iterationvarsf ""
 attr measurement ""
 attr network stigmergie.StigmergyNetwork
-attr processid 995616
+attr processid 999068
 attr repetition 0
 attr replication #0
 attr resultdir results/raw

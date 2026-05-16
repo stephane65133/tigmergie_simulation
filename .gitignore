@@ -1,1 +1,5 @@
 /out/
+.oppbuildspec
+.cproject
+.project
+.qtenvrc

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    .oppfeatures  —  Projet Stigmergie Multi-Domaine
+    Déclaration des features OMNeT++ et des dépendances INET Framework.
+
+    Ce fichier est lu par l'IDE OMNeT++ (Eclipse) pour :
+      1. Résoudre les dépendances entre features
+      2. Configurer les NED Source Folders automatiquement
+      3. Activer/désactiver des parties du code via des macros preprocesseur
+
+    Features utilisées dans ce projet :
+      - INET.physicallayer.wireless.ieee80211  : radio 802.11 ad-hoc
+      - INET.networklayer.ipv4                 : couche réseau IPv4
+      - INET.transportlayer.udp                : transport UDP (échanges phéromonaux)
+      - INET.node.inet                         : AdhocHost
+      - INET.mobility                          : StationaryMobility, RandomWaypoint
+      - INET.visualizer                        : IntegratedCanvasVisualizer
+      - INET.common.lifecycle                  : NodeStatus (pannes E4)
+-->
+<features>
+
+  <!-- Feature principale : noyau du projet stigmergique -->
+  <feature
+    id            = "stigmergie.core"
+    name          = "Stigmergie Core"
+    description   = "Logique phéromonale, DomainNode, PheromoneField, métriques"
+    initiallyEnabled = "true"
+    labels        = "stigmergie"
+    requires      = ""
+    nedPackages   = "stigmergie"
+    extraSourceFolders = ""
+    compileFlags  = ""
+    linkerFlags   = ""
+  />
+
+  <!-- Dépendance INET : radio 802.11 -->
+  <feature
+    id            = "stigmergie.needs.ieee80211"
+    name          = "Requires INET IEEE 802.11"
+    description   = "Interface radio sans fil pour le mesh ad-hoc"
+    initiallyEnabled = "true"
+    labels        = "stigmergie inet"
+    requires      = "stigmergie.core"
+    nedPackages   = ""
+    extraSourceFolders = ""
+    compileFlags  = "-DWITH_IEEE80211"
+    linkerFlags   = ""
+  />
+
+  <!-- Dépendance INET : lifecycle (pannes E4) -->
+  <feature
+    id            = "stigmergie.needs.lifecycle"
+    name          = "Requires INET Lifecycle"
+    description   = "NodeStatus pour simulation des pannes nœuds (E4)"
+    initiallyEnabled = "true"
+    labels        = "stigmergie inet"
+    requires      = "stigmergie.core"
+    nedPackages   = ""
+    extraSourceFolders = ""
+    compileFlags  = "-DWITH_LIFECYCLE"
+    linkerFlags   = ""
+  />
+
+  <!-- Dépendance INET : visualiseur (debug) -->
+  <feature
+    id            = "stigmergie.needs.visualizer"
+    name          = "Requires INET Visualizer"
+    description   = "IntegratedCanvasVisualizer pour debug topologie"
+    initiallyEnabled = "true"
+    labels        = "stigmergie inet"
+    requires      = "stigmergie.core"
+    nedPackages   = ""
+    extraSourceFolders = ""
+    compileFlags  = "-DWITH_VISUALIZERS"
+    linkerFlags   = ""
+  />
+
+</features>

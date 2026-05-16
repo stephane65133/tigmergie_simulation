@@ -116,6 +116,18 @@ void MetricsCollector::handleMessage(cMessage *msg)
 // ═════════════════════════════════════════════════════════════════════════════
 void MetricsCollector::collectAll()
 {
+    // Ré-essayer de résoudre les pointeurs si null (ordre init imprévisible)
+    if (!pheromoneField || !adversary) {
+        cModule *net = getParentModule();
+        if (net) {
+            if (!pheromoneField)
+                pheromoneField = dynamic_cast<PheromoneField*>(
+                    net->getSubmodule("pheromoneField"));
+            if (!adversary)
+                adversary = dynamic_cast<AdversaryModel*>(
+                    net->getSubmodule("adversary"));
+        }
+    }
     collectFromPheromoneField();
     collectFromAdversary();
     collectFromDomainNodes();
@@ -172,10 +184,16 @@ void MetricsCollector::collectFromAdversary()
 {
     if (!adversary) return;
 
-    double h       = adversary->getEntropy();
-    double bMax    = *std::max_element(adversary->getBelief().begin(),
-                                       adversary->getBelief().end());
-    bool   susp    = adversary->isSuspicious();
+    // Garde : vérifier que le vecteur belief est initialisé et non vide
+    const auto &belief = adversary->getBelief();
+    if (belief.empty()) {
+        EV_WARN << "[MetricsCollector] getBelief() vide, collecte ignorée" << endl;
+        return;
+    }
+
+    double h    = adversary->getEntropy();
+    double bMax = *std::max_element(belief.begin(), belief.end());
+    bool   susp = adversary->isSuspicious();
 
     pushToWindow("beliefEntropy",   -1, h);
     pushToWindow("beliefMax",       -1, bMax);
@@ -196,8 +214,9 @@ void MetricsCollector::collectFromAdversary()
     }
 
     // Entropie poids d'attention
+    const auto &attn = adversary->getAttentionWeights();
     double hAtt = 0.0;
-    for (double a : adversary->getAttentionWeights()) {
+    for (double a : attn) {
         if (a > 1e-12) hAtt -= a * log2safe(a);
     }
     pushToWindow("attentionEntropy", -1, hAtt);
@@ -263,7 +282,8 @@ void MetricsCollector::collectNetworkMetrics()
 
     // L_leak : fuite basée sur H(b_t) courant
     double hMax  = log2safe((double)3); // log2(|G|)
-    double hCurr = adversary ? adversary->getEntropy() : hMax;
+    double hCurr = (adversary && !adversary->getBelief().empty())
+                   ? adversary->getEntropy() : hMax;
     double leak  = std::max(0.0, hMax - hCurr) * std::log(2.0); // nats
     cumulativeInfoLeak += leak * collectPeriod.dbl();
     pushToWindow("infoLeak", -1, cumulativeInfoLeak);

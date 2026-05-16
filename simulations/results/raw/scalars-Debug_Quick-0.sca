@@ -1,0 +1,2237 @@
+version 3
+run Debug_Quick-0-20260516-23:49:34-1051043
+attr configname Debug_Quick
+attr datetime 20260516-23:49:34
+attr datetimef 20260516-234934
+attr experiment Debug_Quick
+attr inifile /home/lucky/Desktop/omnetpp-6.4.0/samples/stigmergie_fixed/simulations/omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network stigmergie.StigmergyNetwork
+attr processid 1051043
+attr repetition 0
+attr replication #0
+attr resultdir results/raw
+attr runnumber 0
+attr seedset 42
+config description "DEBUG - 1 run, 20s, logs verbeux"
+config extends General
+config sim-time-limit 20s
+config repeat 1
+config seed-set 42
+config **.cmdenv-log-level detail
+config *.domain[*].cmdenv-log-level detail
+config *.pheromoneField.cmdenv-log-level detail
+config **.vector-recording true
+config *.packetLoss 0.0
+config *.jammingProb 0.0
+config network stigmergie.StigmergyNetwork
+config sim-time-limit 200s
+config repeat 30
+config seed-set 0
+config num-rngs 4
+config **.rng-0 0
+config **.rng-1 1
+config **.rng-2 2
+config **.rng-3 3
+config *.numDomains 6
+config *.packetLoss 0.0
+config *.jammingProb 0.0
+config *.nodeFailureRate 0.0
+config *.syncIntervalSec 2.0
+config *.domain[*].rhoP 0.1
+config *.domain[*].xi 0.5
+config *.domain[*].omegaDefault 0.8
+config *.domain[*].thetaTau 0.7
+config *.domain[*].quorumRatio 0.6
+config *.domain[*].rotationCooldown 5
+config *.domain[*].budgetTotal 100.0
+config *.domain[0].costPerUnit 1.0
+config *.domain[1].costPerUnit 2.0
+config *.domain[2].costPerUnit 1.5
+config *.domain[3].costPerUnit 2.0
+config *.domain[4].costPerUnit 3.0
+config *.domain[5].costPerUnit 1.0
+config *.domain[*].narrativeOptions "\"A B C\""
+config *.domain[*].beliefInit "\"uniform\""
+config *.domain[*].suspicionThreshold 0.3
+config *.domain[*].probingIntensity "\"adaptive\""
+config *.domain[*].gnnHiddenDim 16
+config *.domain[*].attentionLr 0.01
+config *.domain[*].syncIntervalSec 2.0
+config *.pheromoneField.numDomains 6
+config *.pheromoneField.rhoP 0.1
+config *.pheromoneField.omegaDefault 0.8
+config *.pheromoneField.diffAlpha 0.05
+config *.pheromoneField.depositClamp 0.3
+config *.pheromoneField.noiseAmplitude 0.05
+config *.pheromoneField.jammingProb 0.0
+config *.pheromoneField.enableDiffusion true
+config *.pheromoneField.evapPeriod 2.0
+config *.adversary.numDomains 6
+config *.adversary.beliefInit "\"uniform\""
+config *.adversary.gnnHiddenDim 16
+config *.adversary.attentionLr 0.01
+config *.adversary.suspicionThreshold 0.3
+config *.adversary.probingIntensity "\"adaptive\""
+config *.adversary.updatePeriod 2.0
+config *.metricsCollector.numDomains 6
+config *.metricsCollector.outputDir "\"results/processed\""
+config *.metricsCollector.collectPeriod 10.0
+config *.metricsCollector.hThresh 1.0
+config *.metricsCollector.omegaEpsilon 0.05
+config *.metricsCollector.writeCSV true
+config result-dir results/raw
+config output-scalar-file results/raw/scalars-Debug_Quick-0.sca
+config output-vector-file results/raw/vectors-Debug_Quick-0.vec
+config output-vector-precision 9
+config **.scalar-recording true
+config **.vector-recording false
+config **.deceptionEffort.vector-recording true
+config **.pheromoneLevel.vector-recording true
+config **.beliefEntropy.vector-recording true
+config **.falseGoalInduction.vector-recording true
+config **.deceptionPersistence.vector-recording true
+config **.timeToSuspicion.vector-recording true
+config **.consistencyViolation.vector-recording true
+config **.narrativeDivergence.vector-recording true
+config **.syncDelay.vector-recording true
+config **.quorumTriggerSuccess.vector-recording true
+config **.commOverhead.vector-recording true
+config **.infoLeak.vector-recording true
+config **.spoofDetection.vector-recording true
+config **.performanceDrop.vector-recording true
+config **.gracefulDegradation.vector-recording true
+config **.fieldEntropy.vector-recording true
+config **.globalConsistency.vector-recording true
+config **.fieldNorm.vector-recording true
+config **.evaporationLoss.vector-recording true
+
+par StigmergyNetwork.pheromoneField typename "\"stigmergie.PheromoneField\""
+par StigmergyNetwork.pheromoneField numDomains 6
+par StigmergyNetwork.pheromoneField rhoP 0.1
+par StigmergyNetwork.pheromoneField omegaDefault 0.8
+par StigmergyNetwork.pheromoneField diffAlpha 0.05
+par StigmergyNetwork.pheromoneField depositClamp 0.3
+par StigmergyNetwork.pheromoneField noiseAmplitude 0.05
+par StigmergyNetwork.pheromoneField jammingProb 0
+par StigmergyNetwork.pheromoneField enableDiffusion true
+par StigmergyNetwork.pheromoneField evapPeriod 2
+scalar StigmergyNetwork.pheromoneField final_fieldEntropy 2.583577114926991
+scalar StigmergyNetwork.pheromoneField final_consistencyPenalty 0.13285077830428824
+scalar StigmergyNetwork.pheromoneField final_fieldNorm 0.4267034961399535
+scalar StigmergyNetwork.pheromoneField mean_tau_drift_window 0.27514216682679904
+scalar StigmergyNetwork.pheromoneField tau_final_d0 0.1741950740899572
+scalar StigmergyNetwork.pheromoneField tau_final_d1 0.1848416693620133
+scalar StigmergyNetwork.pheromoneField tau_final_d2 0.18228684892625638
+scalar StigmergyNetwork.pheromoneField tau_final_d3 0.1690853623275613
+scalar StigmergyNetwork.pheromoneField tau_final_d4 0.16254776564372844
+scalar StigmergyNetwork.pheromoneField tau_final_d5 0.1712465354033267
+scalar StigmergyNetwork.pheromoneField fieldNorm:mean 0.7638603655772925
+attr checkSignals false
+attr recordingmode mean
+attr source fieldNorm
+attr title "Field norm ||tau||_2, mean"
+scalar StigmergyNetwork.pheromoneField globalConsistency:mean 0.9846593510991188
+attr checkSignals false
+attr recordingmode mean
+attr source globalConsistency
+attr title "Global consistency, mean"
+attr unit ratio
+scalar StigmergyNetwork.pheromoneField adversarialNoise:sum 0
+attr checkSignals false
+attr recordingmode sum
+attr source adversarialNoise
+attr title "Adversarial noise, sum"
+scalar StigmergyNetwork.pheromoneField diffusionGain:mean 0.0034011298851105163
+attr checkSignals false
+attr recordingmode mean
+attr source diffusionGain
+attr title "Diffusion gain, mean"
+scalar StigmergyNetwork.pheromoneField evaporationLoss:sum 1.9504379322592318
+attr checkSignals false
+attr recordingmode sum
+attr source evaporationLoss
+attr title "Evaporation loss, sum"
+scalar StigmergyNetwork.pheromoneField fieldEntropy:mean 2.5828138455794485
+attr checkSignals false
+attr recordingmode mean
+attr source fieldEntropy
+attr title "Field entropy H(tau), mean"
+attr unit bits
+par StigmergyNetwork.adversary typename "\"stigmergie.AdversaryModel\""
+par StigmergyNetwork.adversary numDomains 6
+par StigmergyNetwork.adversary beliefInit "\"uniform\""
+par StigmergyNetwork.adversary gnnHiddenDim 16
+par StigmergyNetwork.adversary attentionLr 0.01
+par StigmergyNetwork.adversary suspicionThreshold 0.3
+par StigmergyNetwork.adversary probingIntensity "\"adaptive\""
+par StigmergyNetwork.adversary updatePeriod 2
+scalar StigmergyNetwork.adversary adversary_final_entropy 1.584962500721156
+scalar StigmergyNetwork.adversary adversary_most_likely_goal 0
+scalar StigmergyNetwork.adversary adversary_is_suspicious 0
+scalar StigmergyNetwork.adversary adversary_strategy_shifted 0
+scalar StigmergyNetwork.adversary attention_d0 0.16666666666666666
+scalar StigmergyNetwork.adversary attention_d1 0.16666666666666666
+scalar StigmergyNetwork.adversary attention_d2 0.16666666666666666
+scalar StigmergyNetwork.adversary attention_d3 0.16666666666666666
+scalar StigmergyNetwork.adversary attention_d4 0.16666666666666666
+scalar StigmergyNetwork.adversary attention_d5 0.16666666666666666
+scalar StigmergyNetwork.adversary strategyShift:sum 0
+attr checkSignals false
+attr recordingmode sum
+attr source strategyShift
+attr title "Strategy shift event, sum"
+scalar StigmergyNetwork.adversary attentionEntropy:mean 2.584962500721156
+attr checkSignals false
+attr recordingmode mean
+attr source attentionEntropy
+attr title "Attention weight entropy, mean"
+scalar StigmergyNetwork.adversary entropyBelief:mean 1.584962500721156
+attr checkSignals false
+attr recordingmode mean
+attr source entropyBelief
+attr title "H(b_t) adversary view, mean"
+attr unit bits
+scalar StigmergyNetwork.adversary beliefMax:mean 0.3333333333333333
+attr checkSignals false
+attr recordingmode mean
+attr source beliefMax
+attr title "Belief max_g b_t(g), mean"
+scalar StigmergyNetwork.adversary beliefMax:max 0.3333333333333333
+attr checkSignals false
+attr recordingmode max
+attr source beliefMax
+attr title "Belief max_g b_t(g), max"
+scalar StigmergyNetwork.adversary suspicionLevel:mean 0
+attr checkSignals false
+attr recordingmode mean
+attr source suspicionLevel
+attr title "Suspicion level, mean"
+par StigmergyNetwork.metricsCollector typename "\"stigmergie.MetricsCollector\""
+par StigmergyNetwork.metricsCollector numDomains 6
+par StigmergyNetwork.metricsCollector outputDir "\"results/processed\""
+par StigmergyNetwork.metricsCollector collectPeriod 10
+par StigmergyNetwork.metricsCollector hThresh 1
+par StigmergyNetwork.metricsCollector omegaEpsilon 0.05
+par StigmergyNetwork.metricsCollector writeCSV true
+scalar StigmergyNetwork.metricsCollector total_collect_ticks 2
+scalar StigmergyNetwork.metricsCollector suspicion_events 0
+scalar StigmergyNetwork.metricsCollector cumulative_overhead_bytes 4320
+scalar StigmergyNetwork.metricsCollector cumulative_info_leak_nats 0
+scalar StigmergyNetwork.metricsCollector peak_consistency_violation 0.3197680254071009
+scalar StigmergyNetwork.metricsCollector first_suspicion_detected 0
+scalar StigmergyNetwork.metricsCollector globalOverhead:last 4320
+attr checkSignals false
+attr recordingmode last
+attr source globalOverhead
+attr title "Global comm overhead, last"
+attr unit bytes
+scalar StigmergyNetwork.metricsCollector globalOmega:mean 0.202135516243493
+attr checkSignals false
+attr recordingmode mean
+attr source globalOmega
+attr title "Global Omega_t, mean"
+scalar StigmergyNetwork.metricsCollector globalH:mean 1.584962500721156
+attr checkSignals false
+attr recordingmode mean
+attr source globalH
+attr title "Global H(bt), mean"
+attr unit bits
+par StigmergyNetwork.domain[0] typename "\"stigmergie.DomainNode\""
+par StigmergyNetwork.domain[0] domainId 0
+par StigmergyNetwork.domain[0] numDomains 6
+par StigmergyNetwork.domain[0] domainLabel "\"Cyber\""
+par StigmergyNetwork.domain[0] rhoP 0.1
+par StigmergyNetwork.domain[0] xi 0.5
+par StigmergyNetwork.domain[0] omegaDefault 0.8
+par StigmergyNetwork.domain[0] thetaTau 0.7
+par StigmergyNetwork.domain[0] quorumRatio 0.6
+par StigmergyNetwork.domain[0] rotationCooldown 5
+par StigmergyNetwork.domain[0] budgetTotal 100
+par StigmergyNetwork.domain[0] costPerUnit 1
+par StigmergyNetwork.domain[0] narrativeOptions "\"A B C\""
+par StigmergyNetwork.domain[0] beliefInit "\"uniform\""
+par StigmergyNetwork.domain[0] suspicionThreshold 0.3
+par StigmergyNetwork.domain[0] probingIntensity "\"adaptive\""
+par StigmergyNetwork.domain[0] gnnHiddenDim 16
+par StigmergyNetwork.domain[0] attentionLr 0.01
+par StigmergyNetwork.domain[0] syncIntervalSec 2
+par StigmergyNetwork.domain[0] nodeFailureRate 0
+scalar StigmergyNetwork.domain[0] final_beliefEntropy 0
+scalar StigmergyNetwork.domain[0] final_tauD 0.0990699460612723
+scalar StigmergyNetwork.domain[0] final_deceptionEffort 19.48712695968485
+scalar StigmergyNetwork.domain[0] total_commOverhead_bytes 960
+scalar StigmergyNetwork.domain[0] false_goal_induction_rate 0.15
+scalar StigmergyNetwork.domain[0] quorum_success_rate 0
+scalar StigmergyNetwork.domain[0] deception_persistence_steps 1
+scalar StigmergyNetwork.domain[0] cumulative_info_leak_nats 9.598407942201124
+scalar StigmergyNetwork.domain[0] node_alive_at_end 1
+scalar StigmergyNetwork.domain[0] gracefulDegradation:mean 0
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source gracefulDegradation
+attr title "Degradation gracieuse, mean"
+attr unit bits/loss_unit
+scalar StigmergyNetwork.domain[0] performanceDrop:mean nan
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source performanceDrop
+attr title "Chute performance (delta H), mean"
+attr unit bits
+statistic StigmergyNetwork.domain[0] performanceDrop:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode stats
+attr source performanceDrop
+attr title "Chute performance (delta H)"
+attr unit bits
+scalar StigmergyNetwork.domain[0] spoofDetection:mean 0.2907661767591589
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source spoofDetection
+attr title "Detection injection adverse, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[0] infoLeak:mean 4.747353266645666
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source infoLeak
+attr title "Fuite informationnelle (nats), mean"
+attr unit nats
+scalar StigmergyNetwork.domain[0] infoLeak:max 9.598407942201124
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source infoLeak
+attr title "Fuite informationnelle (nats), max"
+attr unit nats
+scalar StigmergyNetwork.domain[0] commOverhead:sum 480
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode sum
+attr source commOverhead
+attr title "Surcharge reseau (bytes), sum"
+attr unit bytes
+scalar StigmergyNetwork.domain[0] commOverhead:mean 48
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source commOverhead
+attr title "Surcharge reseau (bytes), mean"
+attr unit bytes
+scalar StigmergyNetwork.domain[0] quorumTriggerSuccess:mean nan
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source quorumTriggerSuccess
+attr title "Succes quorum narrative, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[0] quorumTriggerSuccess:sum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode sum
+attr source quorumTriggerSuccess
+attr title "Succes quorum narrative, sum"
+attr unit ratio
+scalar StigmergyNetwork.domain[0] syncDelay:mean 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source syncDelay
+attr title "Delai synchronisation (ms), mean"
+attr unit ms
+scalar StigmergyNetwork.domain[0] syncDelay:max 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode max
+attr source syncDelay
+attr title "Delai synchronisation (ms), max"
+attr unit ms
+statistic StigmergyNetwork.domain[0] syncDelay:histogram
+field count 50
+field mean 0
+field stddev 0
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode histogram
+attr source syncDelay
+attr title "Delai synchronisation (ms)"
+attr unit ms
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.33999999999999997	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.21999999999999997	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.15999999999999998	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.09999999999999998	0
+bin	-0.08000000000000002	0
+bin	-0.06	0
+bin	-0.03999999999999998	0
+bin	-0.020000000000000018	0
+bin	0	50
+bin	0.020000000000000018	0
+bin	0.040000000000000036	0
+bin	0.06000000000000005	0
+bin	0.07999999999999996	0
+bin	0.09999999999999998	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16000000000000003	0
+bin	0.18000000000000005	0
+bin	0.20000000000000007	0
+bin	0.21999999999999997	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.30000000000000004	0
+bin	0.32000000000000006	0
+bin	0.33999999999999997	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42000000000000004	0
+bin	0.44000000000000006	0
+bin	0.45999999999999996	0
+bin	0.48	0
+bin	0.5	0
+scalar StigmergyNetwork.domain[0] narrativeDivergence:mean 0.08722101865882191
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source narrativeDivergence
+attr title "Divergence narrative, mean"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[0] narrativeDivergence:max 0.3196081014003217
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source narrativeDivergence
+attr title "Divergence narrative, max"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[0] consistencyViolation:count 20
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode count
+attr source consistencyViolation
+attr title "Violation coherence Omega_t, count"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[0] consistencyViolation:mean 0.16463401117926524
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source consistencyViolation
+attr title "Violation coherence Omega_t, mean"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[0] timeToSuspicion:mean 5
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source timeToSuspicion
+attr title "Temps avant suspicion (s), mean"
+attr unit s
+scalar StigmergyNetwork.domain[0] timeToSuspicion:min 5
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode min
+attr source timeToSuspicion
+attr title "Temps avant suspicion (s), min"
+attr unit s
+scalar StigmergyNetwork.domain[0] deceptionPersistence:sum 1
+attr checkSignals false
+attr recordingmode sum
+attr source deceptionPersistence
+attr title "Persistance deception, sum"
+attr unit steps
+scalar StigmergyNetwork.domain[0] deceptionPersistence:last 1
+attr checkSignals false
+attr recordingmode last
+attr source deceptionPersistence
+attr title "Persistance deception, last"
+attr unit steps
+scalar StigmergyNetwork.domain[0] falseGoalInduction:mean 0.4146609485715523
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source falseGoalInduction
+attr title "Taux induction faux objectif, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[0] falseGoalInduction:sum 8.293218971431045
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode sum
+attr source falseGoalInduction
+attr title "Taux induction faux objectif, sum"
+attr unit ratio
+scalar StigmergyNetwork.domain[0] beliefEntropy:mean 0.19271931072498813
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), mean"
+attr unit bits
+scalar StigmergyNetwork.domain[0] beliefEntropy:max 1.001409562847852
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), max"
+attr unit bits
+scalar StigmergyNetwork.domain[0] beliefEntropy:timeavg 0.20286243234209278
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode timeavg
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), timeavg"
+attr unit bits
+scalar StigmergyNetwork.domain[0] pheromoneLevel:mean 0.20524101530270564
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source pheromoneLevel
+attr title "Niveau pheromonal tau_d(t), mean"
+attr unit dimensionless
+statistic StigmergyNetwork.domain[0] pheromoneLevel:stats
+field count 20
+field mean 0.20524101530270564
+field stddev 0.1144347327829298
+field min 0.0990699460612723
+field max 0.4220172662438254
+field sum 4.104820306054113
+field sqrsum 1.0912883405246194
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode stats
+attr source pheromoneLevel
+attr title "Niveau pheromonal tau_d(t)"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[0] deceptionEffort:mean 19.07924715141001
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source deceptionEffort
+attr title "Effort deception x_d^t, mean"
+attr unit units
+scalar StigmergyNetwork.domain[0] deceptionEffort:min 17.885043319374624
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode min
+attr source deceptionEffort
+attr title "Effort deception x_d^t, min"
+attr unit units
+scalar StigmergyNetwork.domain[0] deceptionEffort:max 19.487126959684854
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source deceptionEffort
+attr title "Effort deception x_d^t, max"
+attr unit units
+statistic StigmergyNetwork.domain[0] deceptionEffort:stats
+field count 20
+field mean 19.07924715141001
+field stddev 0.6405300757987524
+field min 17.885043319374624
+field max 19.487126959684854
+field sum 381.58494302820014
+field sqrsum 7288.14873407379
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode stats
+attr source deceptionEffort
+attr title "Effort deception x_d^t"
+attr unit units
+par StigmergyNetwork.domain[1] typename "\"stigmergie.DomainNode\""
+par StigmergyNetwork.domain[1] domainId 1
+par StigmergyNetwork.domain[1] numDomains 6
+par StigmergyNetwork.domain[1] domainLabel "\"Air\""
+par StigmergyNetwork.domain[1] rhoP 0.1
+par StigmergyNetwork.domain[1] xi 0.5
+par StigmergyNetwork.domain[1] omegaDefault 0.8
+par StigmergyNetwork.domain[1] thetaTau 0.7
+par StigmergyNetwork.domain[1] quorumRatio 0.6
+par StigmergyNetwork.domain[1] rotationCooldown 5
+par StigmergyNetwork.domain[1] budgetTotal 100
+par StigmergyNetwork.domain[1] costPerUnit 2
+par StigmergyNetwork.domain[1] narrativeOptions "\"A B C\""
+par StigmergyNetwork.domain[1] beliefInit "\"uniform\""
+par StigmergyNetwork.domain[1] suspicionThreshold 0.3
+par StigmergyNetwork.domain[1] probingIntensity "\"adaptive\""
+par StigmergyNetwork.domain[1] gnnHiddenDim 16
+par StigmergyNetwork.domain[1] attentionLr 0.01
+par StigmergyNetwork.domain[1] syncIntervalSec 2
+par StigmergyNetwork.domain[1] nodeFailureRate 0
+scalar StigmergyNetwork.domain[1] final_beliefEntropy 0
+scalar StigmergyNetwork.domain[1] final_tauD 0.07010874057811033
+scalar StigmergyNetwork.domain[1] final_deceptionEffort 6.394205789595605
+scalar StigmergyNetwork.domain[1] total_commOverhead_bytes 960
+scalar StigmergyNetwork.domain[1] false_goal_induction_rate 0.05
+scalar StigmergyNetwork.domain[1] quorum_success_rate 0
+scalar StigmergyNetwork.domain[1] deception_persistence_steps 0
+scalar StigmergyNetwork.domain[1] cumulative_info_leak_nats 8.846522055654159
+scalar StigmergyNetwork.domain[1] node_alive_at_end 1
+scalar StigmergyNetwork.domain[1] gracefulDegradation:mean 0
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source gracefulDegradation
+attr title "Degradation gracieuse, mean"
+attr unit bits/loss_unit
+scalar StigmergyNetwork.domain[1] performanceDrop:mean nan
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source performanceDrop
+attr title "Chute performance (delta H), mean"
+attr unit bits
+statistic StigmergyNetwork.domain[1] performanceDrop:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode stats
+attr source performanceDrop
+attr title "Chute performance (delta H)"
+attr unit bits
+scalar StigmergyNetwork.domain[1] spoofDetection:mean 0.21368607598353406
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source spoofDetection
+attr title "Detection injection adverse, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[1] infoLeak:mean 4.045832639434
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source infoLeak
+attr title "Fuite informationnelle (nats), mean"
+attr unit nats
+scalar StigmergyNetwork.domain[1] infoLeak:max 8.846522055654159
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source infoLeak
+attr title "Fuite informationnelle (nats), max"
+attr unit nats
+scalar StigmergyNetwork.domain[1] commOverhead:sum 480
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode sum
+attr source commOverhead
+attr title "Surcharge reseau (bytes), sum"
+attr unit bytes
+scalar StigmergyNetwork.domain[1] commOverhead:mean 48
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source commOverhead
+attr title "Surcharge reseau (bytes), mean"
+attr unit bytes
+scalar StigmergyNetwork.domain[1] quorumTriggerSuccess:mean nan
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source quorumTriggerSuccess
+attr title "Succes quorum narrative, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[1] quorumTriggerSuccess:sum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode sum
+attr source quorumTriggerSuccess
+attr title "Succes quorum narrative, sum"
+attr unit ratio
+scalar StigmergyNetwork.domain[1] syncDelay:mean 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source syncDelay
+attr title "Delai synchronisation (ms), mean"
+attr unit ms
+scalar StigmergyNetwork.domain[1] syncDelay:max 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode max
+attr source syncDelay
+attr title "Delai synchronisation (ms), max"
+attr unit ms
+statistic StigmergyNetwork.domain[1] syncDelay:histogram
+field count 50
+field mean 0
+field stddev 0
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode histogram
+attr source syncDelay
+attr title "Delai synchronisation (ms)"
+attr unit ms
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.33999999999999997	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.21999999999999997	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.15999999999999998	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.09999999999999998	0
+bin	-0.08000000000000002	0
+bin	-0.06	0
+bin	-0.03999999999999998	0
+bin	-0.020000000000000018	0
+bin	0	50
+bin	0.020000000000000018	0
+bin	0.040000000000000036	0
+bin	0.06000000000000005	0
+bin	0.07999999999999996	0
+bin	0.09999999999999998	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16000000000000003	0
+bin	0.18000000000000005	0
+bin	0.20000000000000007	0
+bin	0.21999999999999997	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.30000000000000004	0
+bin	0.32000000000000006	0
+bin	0.33999999999999997	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42000000000000004	0
+bin	0.44000000000000006	0
+bin	0.45999999999999996	0
+bin	0.48	0
+bin	0.5	0
+scalar StigmergyNetwork.domain[1] narrativeDivergence:mean 0.10504409200388856
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source narrativeDivergence
+attr title "Divergence narrative, mean"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[1] narrativeDivergence:max 0.3811228699903132
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source narrativeDivergence
+attr title "Divergence narrative, max"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[1] consistencyViolation:count 20
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode count
+attr source consistencyViolation
+attr title "Violation coherence Omega_t, count"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[1] consistencyViolation:mean 0.19398555759679076
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source consistencyViolation
+attr title "Violation coherence Omega_t, mean"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[1] timeToSuspicion:mean 5
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source timeToSuspicion
+attr title "Temps avant suspicion (s), mean"
+attr unit s
+scalar StigmergyNetwork.domain[1] timeToSuspicion:min 5
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode min
+attr source timeToSuspicion
+attr title "Temps avant suspicion (s), min"
+attr unit s
+scalar StigmergyNetwork.domain[1] deceptionPersistence:sum 0
+attr checkSignals false
+attr recordingmode sum
+attr source deceptionPersistence
+attr title "Persistance deception, sum"
+attr unit steps
+scalar StigmergyNetwork.domain[1] deceptionPersistence:last nan
+attr checkSignals false
+attr recordingmode last
+attr source deceptionPersistence
+attr title "Persistance deception, last"
+attr unit steps
+scalar StigmergyNetwork.domain[1] falseGoalInduction:mean 0.1798869828571841
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source falseGoalInduction
+attr title "Taux induction faux objectif, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[1] falseGoalInduction:sum 3.597739657143682
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode sum
+attr source falseGoalInduction
+attr title "Taux induction faux objectif, sum"
+attr unit ratio
+scalar StigmergyNetwork.domain[1] beliefEntropy:mean 0.17488733212254118
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), mean"
+attr unit bits
+scalar StigmergyNetwork.domain[1] beliefEntropy:max 0.9689391575604933
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), max"
+attr unit bits
+scalar StigmergyNetwork.domain[1] beliefEntropy:timeavg 0.18409192855004333
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode timeavg
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), timeavg"
+attr unit bits
+scalar StigmergyNetwork.domain[1] pheromoneLevel:mean 0.198700334761428
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source pheromoneLevel
+attr title "Niveau pheromonal tau_d(t), mean"
+attr unit dimensionless
+statistic StigmergyNetwork.domain[1] pheromoneLevel:stats
+field count 20
+field mean 0.198700334761428
+field stddev 0.16859468566459068
+field min 0.07010874057811033
+field max 0.5439631395041943
+field sum 3.97400669522856
+field sqrsum 1.3296956533385718
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode stats
+attr source pheromoneLevel
+attr title "Niveau pheromonal tau_d(t)"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[1] deceptionEffort:mean 11.050087398123768
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source deceptionEffort
+attr title "Effort deception x_d^t, mean"
+attr unit units
+scalar StigmergyNetwork.domain[1] deceptionEffort:min 4.974275916851104
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode min
+attr source deceptionEffort
+attr title "Effort deception x_d^t, min"
+attr unit units
+scalar StigmergyNetwork.domain[1] deceptionEffort:max 50
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source deceptionEffort
+attr title "Effort deception x_d^t, max"
+attr unit units
+statistic StigmergyNetwork.domain[1] deceptionEffort:stats
+field count 20
+field mean 11.050087398123768
+field stddev 13.373272668653327
+field min 4.974275916851104
+field max 50
+field sum 221.00174796247538
+field sqrsum 5840.132645656326
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode stats
+attr source deceptionEffort
+attr title "Effort deception x_d^t"
+attr unit units
+par StigmergyNetwork.domain[2] typename "\"stigmergie.DomainNode\""
+par StigmergyNetwork.domain[2] domainId 2
+par StigmergyNetwork.domain[2] numDomains 6
+par StigmergyNetwork.domain[2] domainLabel "\"Sol\""
+par StigmergyNetwork.domain[2] rhoP 0.1
+par StigmergyNetwork.domain[2] xi 0.5
+par StigmergyNetwork.domain[2] omegaDefault 0.8
+par StigmergyNetwork.domain[2] thetaTau 0.7
+par StigmergyNetwork.domain[2] quorumRatio 0.6
+par StigmergyNetwork.domain[2] rotationCooldown 5
+par StigmergyNetwork.domain[2] budgetTotal 100
+par StigmergyNetwork.domain[2] costPerUnit 1.5
+par StigmergyNetwork.domain[2] narrativeOptions "\"A B C\""
+par StigmergyNetwork.domain[2] beliefInit "\"uniform\""
+par StigmergyNetwork.domain[2] suspicionThreshold 0.3
+par StigmergyNetwork.domain[2] probingIntensity "\"adaptive\""
+par StigmergyNetwork.domain[2] gnnHiddenDim 16
+par StigmergyNetwork.domain[2] attentionLr 0.01
+par StigmergyNetwork.domain[2] syncIntervalSec 2
+par StigmergyNetwork.domain[2] nodeFailureRate 0
+scalar StigmergyNetwork.domain[2] final_beliefEntropy 0
+scalar StigmergyNetwork.domain[2] final_tauD 0.08285838133974344
+scalar StigmergyNetwork.domain[2] final_deceptionEffort 10.24813495330031
+scalar StigmergyNetwork.domain[2] total_commOverhead_bytes 960
+scalar StigmergyNetwork.domain[2] false_goal_induction_rate 0.1
+scalar StigmergyNetwork.domain[2] quorum_success_rate 0
+scalar StigmergyNetwork.domain[2] deception_persistence_steps 2
+scalar StigmergyNetwork.domain[2] cumulative_info_leak_nats 9.082143744447375
+scalar StigmergyNetwork.domain[2] node_alive_at_end 1
+scalar StigmergyNetwork.domain[2] gracefulDegradation:mean 0
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source gracefulDegradation
+attr title "Degradation gracieuse, mean"
+attr unit bits/loss_unit
+scalar StigmergyNetwork.domain[2] performanceDrop:mean nan
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source performanceDrop
+attr title "Chute performance (delta H), mean"
+attr unit bits
+statistic StigmergyNetwork.domain[2] performanceDrop:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode stats
+attr source performanceDrop
+attr title "Chute performance (delta H)"
+attr unit bits
+scalar StigmergyNetwork.domain[2] spoofDetection:mean 0.24961826816782506
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source spoofDetection
+attr title "Detection injection adverse, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[2] infoLeak:mean 4.281548473978965
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source infoLeak
+attr title "Fuite informationnelle (nats), mean"
+attr unit nats
+scalar StigmergyNetwork.domain[2] infoLeak:max 9.082143744447375
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source infoLeak
+attr title "Fuite informationnelle (nats), max"
+attr unit nats
+scalar StigmergyNetwork.domain[2] commOverhead:sum 480
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode sum
+attr source commOverhead
+attr title "Surcharge reseau (bytes), sum"
+attr unit bytes
+scalar StigmergyNetwork.domain[2] commOverhead:mean 48
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source commOverhead
+attr title "Surcharge reseau (bytes), mean"
+attr unit bytes
+scalar StigmergyNetwork.domain[2] quorumTriggerSuccess:mean nan
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source quorumTriggerSuccess
+attr title "Succes quorum narrative, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[2] quorumTriggerSuccess:sum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode sum
+attr source quorumTriggerSuccess
+attr title "Succes quorum narrative, sum"
+attr unit ratio
+scalar StigmergyNetwork.domain[2] syncDelay:mean 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source syncDelay
+attr title "Delai synchronisation (ms), mean"
+attr unit ms
+scalar StigmergyNetwork.domain[2] syncDelay:max 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode max
+attr source syncDelay
+attr title "Delai synchronisation (ms), max"
+attr unit ms
+statistic StigmergyNetwork.domain[2] syncDelay:histogram
+field count 50
+field mean 0
+field stddev 0
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode histogram
+attr source syncDelay
+attr title "Delai synchronisation (ms)"
+attr unit ms
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.33999999999999997	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.21999999999999997	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.15999999999999998	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.09999999999999998	0
+bin	-0.08000000000000002	0
+bin	-0.06	0
+bin	-0.03999999999999998	0
+bin	-0.020000000000000018	0
+bin	0	50
+bin	0.020000000000000018	0
+bin	0.040000000000000036	0
+bin	0.06000000000000005	0
+bin	0.07999999999999996	0
+bin	0.09999999999999998	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16000000000000003	0
+bin	0.18000000000000005	0
+bin	0.20000000000000007	0
+bin	0.21999999999999997	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.30000000000000004	0
+bin	0.32000000000000006	0
+bin	0.33999999999999997	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42000000000000004	0
+bin	0.44000000000000006	0
+bin	0.45999999999999996	0
+bin	0.48	0
+bin	0.5	0
+scalar StigmergyNetwork.domain[2] narrativeDivergence:mean 0.08072815904725958
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source narrativeDivergence
+attr title "Divergence narrative, mean"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[2] narrativeDivergence:max 0.33921968771991307
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source narrativeDivergence
+attr title "Divergence narrative, max"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[2] consistencyViolation:count 16
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode count
+attr source consistencyViolation
+attr title "Violation coherence Omega_t, count"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[2] consistencyViolation:mean 0.14995555204400096
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source consistencyViolation
+attr title "Violation coherence Omega_t, mean"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[2] timeToSuspicion:mean 5
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source timeToSuspicion
+attr title "Temps avant suspicion (s), mean"
+attr unit s
+scalar StigmergyNetwork.domain[2] timeToSuspicion:min 5
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode min
+attr source timeToSuspicion
+attr title "Temps avant suspicion (s), min"
+attr unit s
+scalar StigmergyNetwork.domain[2] deceptionPersistence:sum 3
+attr checkSignals false
+attr recordingmode sum
+attr source deceptionPersistence
+attr title "Persistance deception, sum"
+attr unit steps
+scalar StigmergyNetwork.domain[2] deceptionPersistence:last 2
+attr checkSignals false
+attr recordingmode last
+attr source deceptionPersistence
+attr title "Persistance deception, last"
+attr unit steps
+scalar StigmergyNetwork.domain[2] falseGoalInduction:mean 0.2847739657143682
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source falseGoalInduction
+attr title "Taux induction faux objectif, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[2] falseGoalInduction:sum 5.695479314287364
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode sum
+attr source falseGoalInduction
+attr title "Taux induction faux objectif, sum"
+attr unit ratio
+scalar StigmergyNetwork.domain[2] beliefEntropy:mean 0.18753639946723616
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), mean"
+attr unit bits
+scalar StigmergyNetwork.domain[2] beliefEntropy:max 1.0026197115253384
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), max"
+attr unit bits
+scalar StigmergyNetwork.domain[2] beliefEntropy:timeavg 0.1974067362813012
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode timeavg
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), timeavg"
+attr unit bits
+scalar StigmergyNetwork.domain[2] pheromoneLevel:mean 0.19912465417296837
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source pheromoneLevel
+attr title "Niveau pheromonal tau_d(t), mean"
+attr unit dimensionless
+statistic StigmergyNetwork.domain[2] pheromoneLevel:stats
+field count 20
+field mean 0.19912465417296837
+field stddev 0.1385160074028425
+field min 0.08285838133974344
+field max 0.4706997878920228
+field sum 3.9824930834593673
+field sqrsum 1.157559559819747
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode stats
+attr source pheromoneLevel
+attr title "Niveau pheromonal tau_d(t)"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[2] deceptionEffort:mean 11.453644301662077
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source deceptionEffort
+attr title "Effort deception x_d^t, mean"
+attr unit units
+scalar StigmergyNetwork.domain[2] deceptionEffort:min 8.56299666239274
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode min
+attr source deceptionEffort
+attr title "Effort deception x_d^t, min"
+attr unit units
+scalar StigmergyNetwork.domain[2] deceptionEffort:max 21.343405906709418
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source deceptionEffort
+attr title "Effort deception x_d^t, max"
+attr unit units
+statistic StigmergyNetwork.domain[2] deceptionEffort:stats
+field count 20
+field mean 11.453644301662077
+field stddev 3.4776632886032144
+field min 8.56299666239274
+field max 21.343405906709418
+field sum 229.07288603324153
+field sqrsum 2853.508052808995
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode stats
+attr source deceptionEffort
+attr title "Effort deception x_d^t"
+attr unit units
+par StigmergyNetwork.domain[3] typename "\"stigmergie.DomainNode\""
+par StigmergyNetwork.domain[3] domainId 3
+par StigmergyNetwork.domain[3] numDomains 6
+par StigmergyNetwork.domain[3] domainLabel "\"Maritime\""
+par StigmergyNetwork.domain[3] rhoP 0.1
+par StigmergyNetwork.domain[3] xi 0.5
+par StigmergyNetwork.domain[3] omegaDefault 0.8
+par StigmergyNetwork.domain[3] thetaTau 0.7
+par StigmergyNetwork.domain[3] quorumRatio 0.6
+par StigmergyNetwork.domain[3] rotationCooldown 5
+par StigmergyNetwork.domain[3] budgetTotal 100
+par StigmergyNetwork.domain[3] costPerUnit 2
+par StigmergyNetwork.domain[3] narrativeOptions "\"A B C\""
+par StigmergyNetwork.domain[3] beliefInit "\"uniform\""
+par StigmergyNetwork.domain[3] suspicionThreshold 0.3
+par StigmergyNetwork.domain[3] probingIntensity "\"adaptive\""
+par StigmergyNetwork.domain[3] gnnHiddenDim 16
+par StigmergyNetwork.domain[3] attentionLr 0.01
+par StigmergyNetwork.domain[3] syncIntervalSec 2
+par StigmergyNetwork.domain[3] nodeFailureRate 0
+scalar StigmergyNetwork.domain[3] final_beliefEntropy 0
+scalar StigmergyNetwork.domain[3] final_tauD 0.08970945513268822
+scalar StigmergyNetwork.domain[3] final_deceptionEffort 8.478406703623167
+scalar StigmergyNetwork.domain[3] total_commOverhead_bytes 960
+scalar StigmergyNetwork.domain[3] false_goal_induction_rate 0.1
+scalar StigmergyNetwork.domain[3] quorum_success_rate 0
+scalar StigmergyNetwork.domain[3] deception_persistence_steps 1
+scalar StigmergyNetwork.domain[3] cumulative_info_leak_nats 9.01667019636814
+scalar StigmergyNetwork.domain[3] node_alive_at_end 1
+scalar StigmergyNetwork.domain[3] gracefulDegradation:mean 0
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source gracefulDegradation
+attr title "Degradation gracieuse, mean"
+attr unit bits/loss_unit
+scalar StigmergyNetwork.domain[3] performanceDrop:mean nan
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source performanceDrop
+attr title "Chute performance (delta H), mean"
+attr unit bits
+statistic StigmergyNetwork.domain[3] performanceDrop:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode stats
+attr source performanceDrop
+attr title "Chute performance (delta H)"
+attr unit bits
+scalar StigmergyNetwork.domain[3] spoofDetection:mean 0.2613267986123852
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source spoofDetection
+attr title "Detection injection adverse, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[3] infoLeak:mean 4.192666810013227
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source infoLeak
+attr title "Fuite informationnelle (nats), mean"
+attr unit nats
+scalar StigmergyNetwork.domain[3] infoLeak:max 9.01667019636814
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source infoLeak
+attr title "Fuite informationnelle (nats), max"
+attr unit nats
+scalar StigmergyNetwork.domain[3] commOverhead:sum 480
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode sum
+attr source commOverhead
+attr title "Surcharge reseau (bytes), sum"
+attr unit bytes
+scalar StigmergyNetwork.domain[3] commOverhead:mean 48
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source commOverhead
+attr title "Surcharge reseau (bytes), mean"
+attr unit bytes
+scalar StigmergyNetwork.domain[3] quorumTriggerSuccess:mean nan
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source quorumTriggerSuccess
+attr title "Succes quorum narrative, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[3] quorumTriggerSuccess:sum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode sum
+attr source quorumTriggerSuccess
+attr title "Succes quorum narrative, sum"
+attr unit ratio
+scalar StigmergyNetwork.domain[3] syncDelay:mean 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source syncDelay
+attr title "Delai synchronisation (ms), mean"
+attr unit ms
+scalar StigmergyNetwork.domain[3] syncDelay:max 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode max
+attr source syncDelay
+attr title "Delai synchronisation (ms), max"
+attr unit ms
+statistic StigmergyNetwork.domain[3] syncDelay:histogram
+field count 50
+field mean 0
+field stddev 0
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode histogram
+attr source syncDelay
+attr title "Delai synchronisation (ms)"
+attr unit ms
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.33999999999999997	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.21999999999999997	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.15999999999999998	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.09999999999999998	0
+bin	-0.08000000000000002	0
+bin	-0.06	0
+bin	-0.03999999999999998	0
+bin	-0.020000000000000018	0
+bin	0	50
+bin	0.020000000000000018	0
+bin	0.040000000000000036	0
+bin	0.06000000000000005	0
+bin	0.07999999999999996	0
+bin	0.09999999999999998	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16000000000000003	0
+bin	0.18000000000000005	0
+bin	0.20000000000000007	0
+bin	0.21999999999999997	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.30000000000000004	0
+bin	0.32000000000000006	0
+bin	0.33999999999999997	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42000000000000004	0
+bin	0.44000000000000006	0
+bin	0.45999999999999996	0
+bin	0.48	0
+bin	0.5	0
+scalar StigmergyNetwork.domain[3] narrativeDivergence:mean 0.0837081158979143
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source narrativeDivergence
+attr title "Divergence narrative, mean"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[3] narrativeDivergence:max 0.3512629337247237
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source narrativeDivergence
+attr title "Divergence narrative, max"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[3] consistencyViolation:count 18
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode count
+attr source consistencyViolation
+attr title "Violation coherence Omega_t, count"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[3] consistencyViolation:mean 0.1427979654676441
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source consistencyViolation
+attr title "Violation coherence Omega_t, mean"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[3] timeToSuspicion:mean 5
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source timeToSuspicion
+attr title "Temps avant suspicion (s), mean"
+attr unit s
+scalar StigmergyNetwork.domain[3] timeToSuspicion:min 5
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode min
+attr source timeToSuspicion
+attr title "Temps avant suspicion (s), min"
+attr unit s
+scalar StigmergyNetwork.domain[3] deceptionPersistence:sum 1
+attr checkSignals false
+attr recordingmode sum
+attr source deceptionPersistence
+attr title "Persistance deception, sum"
+attr unit steps
+scalar StigmergyNetwork.domain[3] deceptionPersistence:last 1
+attr checkSignals false
+attr recordingmode last
+attr source deceptionPersistence
+attr title "Persistance deception, last"
+attr unit steps
+scalar StigmergyNetwork.domain[3] falseGoalInduction:mean 0.2847739657143682
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source falseGoalInduction
+attr title "Taux induction faux objectif, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[3] falseGoalInduction:sum 5.695479314287364
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode sum
+attr source falseGoalInduction
+attr title "Taux induction faux objectif, sum"
+attr unit ratio
+scalar StigmergyNetwork.domain[3] beliefEntropy:mean 0.1873084748975417
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), mean"
+attr unit bits
+scalar StigmergyNetwork.domain[3] beliefEntropy:max 1.0043085600106567
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), max"
+attr unit bits
+scalar StigmergyNetwork.domain[3] beliefEntropy:timeavg 0.19716681568162286
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode timeavg
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), timeavg"
+attr unit bits
+scalar StigmergyNetwork.domain[3] pheromoneLevel:mean 0.20508435911092543
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source pheromoneLevel
+attr title "Niveau pheromonal tau_d(t), mean"
+attr unit dimensionless
+statistic StigmergyNetwork.domain[3] pheromoneLevel:stats
+field count 20
+field mean 0.20508435911092543
+field stddev 0.13322547681321273
+field min 0.08970945513268822
+field max 0.4555797319350997
+field sum 4.101687182218509
+field sqrsum 1.1784234128088302
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode stats
+attr source pheromoneLevel
+attr title "Niveau pheromonal tau_d(t)"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[3] deceptionEffort:mean 9.872140920550262
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source deceptionEffort
+attr title "Effort deception x_d^t, mean"
+attr unit units
+scalar StigmergyNetwork.domain[3] deceptionEffort:min 7.682656035789538
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode min
+attr source deceptionEffort
+attr title "Effort deception x_d^t, min"
+attr unit units
+scalar StigmergyNetwork.domain[3] deceptionEffort:max 22.78940428433483
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source deceptionEffort
+attr title "Effort deception x_d^t, max"
+attr unit units
+statistic StigmergyNetwork.domain[3] deceptionEffort:stats
+field count 20
+field mean 9.872140920550262
+field stddev 4.436027946017104
+field min 7.682656035789538
+field max 22.78940428433483
+field sum 197.44281841100525
+field sqrsum 2323.0718619231093
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode stats
+attr source deceptionEffort
+attr title "Effort deception x_d^t"
+attr unit units
+par StigmergyNetwork.domain[4] typename "\"stigmergie.DomainNode\""
+par StigmergyNetwork.domain[4] domainId 4
+par StigmergyNetwork.domain[4] numDomains 6
+par StigmergyNetwork.domain[4] domainLabel "\"Spatial\""
+par StigmergyNetwork.domain[4] rhoP 0.1
+par StigmergyNetwork.domain[4] xi 0.5
+par StigmergyNetwork.domain[4] omegaDefault 0.8
+par StigmergyNetwork.domain[4] thetaTau 0.7
+par StigmergyNetwork.domain[4] quorumRatio 0.6
+par StigmergyNetwork.domain[4] rotationCooldown 5
+par StigmergyNetwork.domain[4] budgetTotal 100
+par StigmergyNetwork.domain[4] costPerUnit 3
+par StigmergyNetwork.domain[4] narrativeOptions "\"A B C\""
+par StigmergyNetwork.domain[4] beliefInit "\"uniform\""
+par StigmergyNetwork.domain[4] suspicionThreshold 0.3
+par StigmergyNetwork.domain[4] probingIntensity "\"adaptive\""
+par StigmergyNetwork.domain[4] gnnHiddenDim 16
+par StigmergyNetwork.domain[4] attentionLr 0.01
+par StigmergyNetwork.domain[4] syncIntervalSec 2
+par StigmergyNetwork.domain[4] nodeFailureRate 0
+scalar StigmergyNetwork.domain[4] final_beliefEntropy 0
+scalar StigmergyNetwork.domain[4] final_tauD 0.08687042350611099
+scalar StigmergyNetwork.domain[4] final_deceptionEffort 5.575109839518083
+scalar StigmergyNetwork.domain[4] total_commOverhead_bytes 960
+scalar StigmergyNetwork.domain[4] false_goal_induction_rate 0.15
+scalar StigmergyNetwork.domain[4] quorum_success_rate 0
+scalar StigmergyNetwork.domain[4] deception_persistence_steps 0
+scalar StigmergyNetwork.domain[4] cumulative_info_leak_nats 9.412487251846494
+scalar StigmergyNetwork.domain[4] node_alive_at_end 1
+scalar StigmergyNetwork.domain[4] gracefulDegradation:mean 0
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source gracefulDegradation
+attr title "Degradation gracieuse, mean"
+attr unit bits/loss_unit
+scalar StigmergyNetwork.domain[4] performanceDrop:mean nan
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source performanceDrop
+attr title "Chute performance (delta H), mean"
+attr unit bits
+statistic StigmergyNetwork.domain[4] performanceDrop:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode stats
+attr source performanceDrop
+attr title "Chute performance (delta H)"
+attr unit bits
+scalar StigmergyNetwork.domain[4] spoofDetection:mean 0.2667740154882828
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source spoofDetection
+attr title "Detection injection adverse, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[4] infoLeak:mean 4.5921270183545255
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source infoLeak
+attr title "Fuite informationnelle (nats), mean"
+attr unit nats
+scalar StigmergyNetwork.domain[4] infoLeak:max 9.412487251846494
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source infoLeak
+attr title "Fuite informationnelle (nats), max"
+attr unit nats
+scalar StigmergyNetwork.domain[4] commOverhead:sum 480
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode sum
+attr source commOverhead
+attr title "Surcharge reseau (bytes), sum"
+attr unit bytes
+scalar StigmergyNetwork.domain[4] commOverhead:mean 48
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source commOverhead
+attr title "Surcharge reseau (bytes), mean"
+attr unit bytes
+scalar StigmergyNetwork.domain[4] quorumTriggerSuccess:mean nan
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source quorumTriggerSuccess
+attr title "Succes quorum narrative, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[4] quorumTriggerSuccess:sum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode sum
+attr source quorumTriggerSuccess
+attr title "Succes quorum narrative, sum"
+attr unit ratio
+scalar StigmergyNetwork.domain[4] syncDelay:mean 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source syncDelay
+attr title "Delai synchronisation (ms), mean"
+attr unit ms
+scalar StigmergyNetwork.domain[4] syncDelay:max 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode max
+attr source syncDelay
+attr title "Delai synchronisation (ms), max"
+attr unit ms
+statistic StigmergyNetwork.domain[4] syncDelay:histogram
+field count 50
+field mean 0
+field stddev 0
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode histogram
+attr source syncDelay
+attr title "Delai synchronisation (ms)"
+attr unit ms
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.33999999999999997	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.21999999999999997	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.15999999999999998	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.09999999999999998	0
+bin	-0.08000000000000002	0
+bin	-0.06	0
+bin	-0.03999999999999998	0
+bin	-0.020000000000000018	0
+bin	0	50
+bin	0.020000000000000018	0
+bin	0.040000000000000036	0
+bin	0.06000000000000005	0
+bin	0.07999999999999996	0
+bin	0.09999999999999998	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16000000000000003	0
+bin	0.18000000000000005	0
+bin	0.20000000000000007	0
+bin	0.21999999999999997	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.30000000000000004	0
+bin	0.32000000000000006	0
+bin	0.33999999999999997	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42000000000000004	0
+bin	0.44000000000000006	0
+bin	0.45999999999999996	0
+bin	0.48	0
+bin	0.5	0
+scalar StigmergyNetwork.domain[4] narrativeDivergence:mean 0.06628983053250317
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source narrativeDivergence
+attr title "Divergence narrative, mean"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[4] narrativeDivergence:max 0.24499637118298387
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source narrativeDivergence
+attr title "Divergence narrative, max"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[4] consistencyViolation:count 16
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode count
+attr source consistencyViolation
+attr title "Violation coherence Omega_t, count"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[4] consistencyViolation:mean 0.17788481008664747
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source consistencyViolation
+attr title "Violation coherence Omega_t, mean"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[4] timeToSuspicion:mean 5
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source timeToSuspicion
+attr title "Temps avant suspicion (s), mean"
+attr unit s
+scalar StigmergyNetwork.domain[4] timeToSuspicion:min 5
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode min
+attr source timeToSuspicion
+attr title "Temps avant suspicion (s), min"
+attr unit s
+scalar StigmergyNetwork.domain[4] deceptionPersistence:sum 0
+attr checkSignals false
+attr recordingmode sum
+attr source deceptionPersistence
+attr title "Persistance deception, sum"
+attr unit steps
+scalar StigmergyNetwork.domain[4] deceptionPersistence:last nan
+attr checkSignals false
+attr recordingmode last
+attr source deceptionPersistence
+attr title "Persistance deception, last"
+attr unit steps
+scalar StigmergyNetwork.domain[4] falseGoalInduction:mean 0.4146609485715523
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source falseGoalInduction
+attr title "Taux induction faux objectif, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[4] falseGoalInduction:sum 8.293218971431045
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode sum
+attr source falseGoalInduction
+attr title "Taux induction faux objectif, sum"
+attr unit ratio
+scalar StigmergyNetwork.domain[4] beliefEntropy:mean 0.19879642197877717
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), mean"
+attr unit bits
+scalar StigmergyNetwork.domain[4] beliefEntropy:max 0.9838100506026807
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), max"
+attr unit bits
+scalar StigmergyNetwork.domain[4] beliefEntropy:timeavg 0.20925939155660753
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode timeavg
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), timeavg"
+attr unit bits
+scalar StigmergyNetwork.domain[4] pheromoneLevel:mean 0.17986182029083145
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source pheromoneLevel
+attr title "Niveau pheromonal tau_d(t), mean"
+attr unit dimensionless
+statistic StigmergyNetwork.domain[4] pheromoneLevel:stats
+field count 20
+field mean 0.17986182029083145
+field stddev 0.09857706099467298
+field min 0.08687042350611099
+field max 0.37753719738827085
+field sum 3.597236405816629
+field sqrsum 0.831636790099229
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode stats
+attr source pheromoneLevel
+attr title "Niveau pheromonal tau_d(t)"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[4] deceptionEffort:mean 5.5485612683466865
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source deceptionEffort
+attr title "Effort deception x_d^t, mean"
+attr unit units
+scalar StigmergyNetwork.domain[4] deceptionEffort:min 4.836903930758172
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode min
+attr source deceptionEffort
+attr title "Effort deception x_d^t, min"
+attr unit units
+scalar StigmergyNetwork.domain[4] deceptionEffort:max 6.810645326882944
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source deceptionEffort
+attr title "Effort deception x_d^t, max"
+attr unit units
+statistic StigmergyNetwork.domain[4] deceptionEffort:stats
+field count 20
+field mean 5.5485612683466865
+field stddev 0.49939006548771553
+field min 4.836903930758172
+field max 6.810645326882944
+field sum 110.97122536693374
+field sqrsum 620.4690612845885
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode stats
+attr source deceptionEffort
+attr title "Effort deception x_d^t"
+attr unit units
+par StigmergyNetwork.domain[5] typename "\"stigmergie.DomainNode\""
+par StigmergyNetwork.domain[5] domainId 5
+par StigmergyNetwork.domain[5] numDomains 6
+par StigmergyNetwork.domain[5] domainLabel "\"EM\""
+par StigmergyNetwork.domain[5] rhoP 0.1
+par StigmergyNetwork.domain[5] xi 0.5
+par StigmergyNetwork.domain[5] omegaDefault 0.8
+par StigmergyNetwork.domain[5] thetaTau 0.7
+par StigmergyNetwork.domain[5] quorumRatio 0.6
+par StigmergyNetwork.domain[5] rotationCooldown 5
+par StigmergyNetwork.domain[5] budgetTotal 100
+par StigmergyNetwork.domain[5] costPerUnit 1
+par StigmergyNetwork.domain[5] narrativeOptions "\"A B C\""
+par StigmergyNetwork.domain[5] beliefInit "\"uniform\""
+par StigmergyNetwork.domain[5] suspicionThreshold 0.3
+par StigmergyNetwork.domain[5] probingIntensity "\"adaptive\""
+par StigmergyNetwork.domain[5] gnnHiddenDim 16
+par StigmergyNetwork.domain[5] attentionLr 0.01
+par StigmergyNetwork.domain[5] syncIntervalSec 2
+par StigmergyNetwork.domain[5] nodeFailureRate 0
+scalar StigmergyNetwork.domain[5] final_beliefEntropy 0
+scalar StigmergyNetwork.domain[5] final_tauD 0.07179270593220147
+scalar StigmergyNetwork.domain[5] final_deceptionEffort 14.346786790850302
+scalar StigmergyNetwork.domain[5] total_commOverhead_bytes 960
+scalar StigmergyNetwork.domain[5] false_goal_induction_rate 0.2
+scalar StigmergyNetwork.domain[5] quorum_success_rate 0
+scalar StigmergyNetwork.domain[5] deception_persistence_steps 0
+scalar StigmergyNetwork.domain[5] cumulative_info_leak_nats 9.516063901123403
+scalar StigmergyNetwork.domain[5] node_alive_at_end 1
+scalar StigmergyNetwork.domain[5] gracefulDegradation:mean 0
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source gracefulDegradation
+attr title "Degradation gracieuse, mean"
+attr unit bits/loss_unit
+scalar StigmergyNetwork.domain[5] performanceDrop:mean nan
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source performanceDrop
+attr title "Chute performance (delta H), mean"
+attr unit bits
+statistic StigmergyNetwork.domain[5] performanceDrop:stats
+field count 0
+field mean nan
+field stddev nan
+field min nan
+field max nan
+field sum 0
+field sqrsum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode stats
+attr source performanceDrop
+attr title "Chute performance (delta H)"
+attr unit bits
+scalar StigmergyNetwork.domain[5] spoofDetection:mean 0.14248679660741576
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source spoofDetection
+attr title "Detection injection adverse, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[5] infoLeak:mean 4.712115468216153
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source infoLeak
+attr title "Fuite informationnelle (nats), mean"
+attr unit nats
+scalar StigmergyNetwork.domain[5] infoLeak:max 9.516063901123403
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source infoLeak
+attr title "Fuite informationnelle (nats), max"
+attr unit nats
+scalar StigmergyNetwork.domain[5] commOverhead:sum 480
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode sum
+attr source commOverhead
+attr title "Surcharge reseau (bytes), sum"
+attr unit bytes
+scalar StigmergyNetwork.domain[5] commOverhead:mean 48
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source commOverhead
+attr title "Surcharge reseau (bytes), mean"
+attr unit bytes
+scalar StigmergyNetwork.domain[5] quorumTriggerSuccess:mean nan
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source quorumTriggerSuccess
+attr title "Succes quorum narrative, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[5] quorumTriggerSuccess:sum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode sum
+attr source quorumTriggerSuccess
+attr title "Succes quorum narrative, sum"
+attr unit ratio
+scalar StigmergyNetwork.domain[5] syncDelay:mean 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source syncDelay
+attr title "Delai synchronisation (ms), mean"
+attr unit ms
+scalar StigmergyNetwork.domain[5] syncDelay:max 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode max
+attr source syncDelay
+attr title "Delai synchronisation (ms), max"
+attr unit ms
+statistic StigmergyNetwork.domain[5] syncDelay:histogram
+field count 50
+field mean 0
+field stddev 0
+field min 0
+field max 0
+field sum 0
+field sqrsum 0
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode histogram
+attr source syncDelay
+attr title "Delai synchronisation (ms)"
+attr unit ms
+bin	-inf	0
+bin	-0.5	0
+bin	-0.48	0
+bin	-0.46	0
+bin	-0.44	0
+bin	-0.42	0
+bin	-0.4	0
+bin	-0.38	0
+bin	-0.36	0
+bin	-0.33999999999999997	0
+bin	-0.32	0
+bin	-0.3	0
+bin	-0.28	0
+bin	-0.26	0
+bin	-0.24	0
+bin	-0.21999999999999997	0
+bin	-0.2	0
+bin	-0.18	0
+bin	-0.15999999999999998	0
+bin	-0.14	0
+bin	-0.12	0
+bin	-0.09999999999999998	0
+bin	-0.08000000000000002	0
+bin	-0.06	0
+bin	-0.03999999999999998	0
+bin	-0.020000000000000018	0
+bin	0	50
+bin	0.020000000000000018	0
+bin	0.040000000000000036	0
+bin	0.06000000000000005	0
+bin	0.07999999999999996	0
+bin	0.09999999999999998	0
+bin	0.12	0
+bin	0.14	0
+bin	0.16000000000000003	0
+bin	0.18000000000000005	0
+bin	0.20000000000000007	0
+bin	0.21999999999999997	0
+bin	0.24	0
+bin	0.26	0
+bin	0.28	0
+bin	0.30000000000000004	0
+bin	0.32000000000000006	0
+bin	0.33999999999999997	0
+bin	0.36	0
+bin	0.38	0
+bin	0.4	0
+bin	0.42000000000000004	0
+bin	0.44000000000000006	0
+bin	0.45999999999999996	0
+bin	0.48	0
+bin	0.5	0
+scalar StigmergyNetwork.domain[5] narrativeDivergence:mean 0.10052053039280887
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source narrativeDivergence
+attr title "Divergence narrative, mean"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[5] narrativeDivergence:max 0.3811228699903132
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source narrativeDivergence
+attr title "Divergence narrative, max"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[5] consistencyViolation:count 18
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode count
+attr source consistencyViolation
+attr title "Violation coherence Omega_t, count"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[5] consistencyViolation:mean 0.3327631348885836
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source consistencyViolation
+attr title "Violation coherence Omega_t, mean"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[5] timeToSuspicion:mean 7
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source timeToSuspicion
+attr title "Temps avant suspicion (s), mean"
+attr unit s
+scalar StigmergyNetwork.domain[5] timeToSuspicion:min 7
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode min
+attr source timeToSuspicion
+attr title "Temps avant suspicion (s), min"
+attr unit s
+scalar StigmergyNetwork.domain[5] deceptionPersistence:sum 0
+attr checkSignals false
+attr recordingmode sum
+attr source deceptionPersistence
+attr title "Persistance deception, sum"
+attr unit steps
+scalar StigmergyNetwork.domain[5] deceptionPersistence:last nan
+attr checkSignals false
+attr recordingmode last
+attr source deceptionPersistence
+attr title "Persistance deception, last"
+attr unit steps
+scalar StigmergyNetwork.domain[5] falseGoalInduction:mean 0.5028812647620697
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode mean
+attr source falseGoalInduction
+attr title "Taux induction faux objectif, mean"
+attr unit ratio
+scalar StigmergyNetwork.domain[5] falseGoalInduction:sum 10.057625295241394
+attr checkSignals false
+attr interpolationmode none
+attr recordingmode sum
+attr source falseGoalInduction
+attr title "Taux induction faux objectif, sum"
+attr unit ratio
+scalar StigmergyNetwork.domain[5] beliefEntropy:mean 0.21208468082783427
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), mean"
+attr unit bits
+scalar StigmergyNetwork.domain[5] beliefEntropy:max 0.7713542548134368
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), max"
+attr unit bits
+scalar StigmergyNetwork.domain[5] beliefEntropy:timeavg 0.22324703245035185
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode timeavg
+attr source beliefEntropy
+attr title "Entropie croyance H(bt), timeavg"
+attr unit bits
+scalar StigmergyNetwork.domain[5] pheromoneLevel:mean 0.12641684847520415
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source pheromoneLevel
+attr title "Niveau pheromonal tau_d(t), mean"
+attr unit dimensionless
+statistic StigmergyNetwork.domain[5] pheromoneLevel:stats
+field count 20
+field mean 0.12641684847520415
+field stddev 0.06454218575189044
+field min 0.07179270593220147
+field max 0.3604745350545272
+field sum 2.528336969504083
+field sqrsum 0.3987725726590536
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode stats
+attr source pheromoneLevel
+attr title "Niveau pheromonal tau_d(t)"
+attr unit dimensionless
+scalar StigmergyNetwork.domain[5] deceptionEffort:mean 12.278829298956254
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode mean
+attr source deceptionEffort
+attr title "Effort deception x_d^t, mean"
+attr unit units
+scalar StigmergyNetwork.domain[5] deceptionEffort:min 3.8053567231555214
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode min
+attr source deceptionEffort
+attr title "Effort deception x_d^t, min"
+attr unit units
+scalar StigmergyNetwork.domain[5] deceptionEffort:max 16.666666666666668
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode max
+attr source deceptionEffort
+attr title "Effort deception x_d^t, max"
+attr unit units
+statistic StigmergyNetwork.domain[5] deceptionEffort:stats
+field count 20
+field mean 12.278829298956254
+field stddev 3.79770968476768
+field min 3.8053567231555214
+field max 16.666666666666668
+field sum 245.57658597912507
+field sqrsum 3289.422357203917
+attr checkSignals false
+attr interpolationmode linear
+attr recordingmode stats
+attr source deceptionEffort
+attr title "Effort deception x_d^t"
+attr unit units
+par StigmergyNetwork typename "\"stigmergie.StigmergyNetwork\""
+par StigmergyNetwork numDomains 6
+par StigmergyNetwork packetLoss 0
+par StigmergyNetwork jammingProb 0
+par StigmergyNetwork nodeFailureRate 0
+par StigmergyNetwork latencyMeanMs 100
+par StigmergyNetwork latencyStdMs 30
+par StigmergyNetwork syncIntervalSec 2
+

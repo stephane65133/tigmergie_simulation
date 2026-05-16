@@ -52,27 +52,27 @@ simple DomainNode
         @display("i=device/server2;is=l");
 
         // Statistiques Results A
-        @statistic[deceptionEffort](title="Effort deception x_d^t"; source=deceptionEffort; record=vector,mean,min,max,stats; unit="units"; interpolationmode=linear);
-        @statistic[pheromoneLevel](title="Niveau pheromonal tau_d(t)"; source=pheromoneLevel; record=vector,mean,stats; unit="dimensionless"; interpolationmode=linear);
-        @statistic[beliefEntropy](title="Entropie croyance H(bt)"; source=beliefEntropy; record=vector,mean,max,timeavg; unit="bits"; interpolationmode=linear);
-        @statistic[falseGoalInduction](title="Taux induction faux objectif"; source=falseGoalInduction; record=vector,mean,sum; unit="ratio"; interpolationmode=none);
-        @statistic[deceptionPersistence](title="Persistance deception"; source=deceptionPersistence; record=sum,last; unit="steps");
-        @statistic[timeToSuspicion](title="Temps avant suspicion (s)"; source=timeToSuspicion; record=vector,mean,min; unit="s"; interpolationmode=none);
+        @statistic[deceptionEffort](checkSignals=false; title="Effort deception x_d^t"; source=deceptionEffort; record=vector,mean,min,max,stats; unit="units"; interpolationmode=linear);
+        @statistic[pheromoneLevel](checkSignals=false; title="Niveau pheromonal tau_d(t)"; source=pheromoneLevel; record=vector,mean,stats; unit="dimensionless"; interpolationmode=linear);
+        @statistic[beliefEntropy](checkSignals=false; title="Entropie croyance H(bt)"; source=beliefEntropy; record=vector,mean,max,timeavg; unit="bits"; interpolationmode=linear);
+        @statistic[falseGoalInduction](checkSignals=false; title="Taux induction faux objectif"; source=falseGoalInduction; record=vector,mean,sum; unit="ratio"; interpolationmode=none);
+        @statistic[deceptionPersistence](checkSignals=false; title="Persistance deception"; source=deceptionPersistence; record=sum,last; unit="steps");
+        @statistic[timeToSuspicion](checkSignals=false; title="Temps avant suspicion (s)"; source=timeToSuspicion; record=vector,mean,min; unit="s"; interpolationmode=none);
 
         // Statistiques Results B
-        @statistic[consistencyViolation](title="Violation coherence Omega_t"; source=consistencyViolation; record=vector,count,mean; unit="dimensionless"; interpolationmode=none);
-        @statistic[narrativeDivergence](title="Divergence narrative"; source=narrativeDivergence; record=vector,mean,max; unit="dimensionless"; interpolationmode=linear);
-        @statistic[syncDelay](title="Delai synchronisation (ms)"; source=syncDelay; record=vector,mean,max,histogram; unit="ms"; interpolationmode=none);
-        @statistic[quorumTriggerSuccess](title="Succes quorum narrative"; source=quorumTriggerSuccess; record=vector,mean,sum; unit="ratio"; interpolationmode=none);
+        @statistic[consistencyViolation](checkSignals=false; title="Violation coherence Omega_t"; source=consistencyViolation; record=vector,count,mean; unit="dimensionless"; interpolationmode=none);
+        @statistic[narrativeDivergence](checkSignals=false; title="Divergence narrative"; source=narrativeDivergence; record=vector,mean,max; unit="dimensionless"; interpolationmode=linear);
+        @statistic[syncDelay](checkSignals=false; title="Delai synchronisation (ms)"; source=syncDelay; record=vector,mean,max,histogram; unit="ms"; interpolationmode=none);
+        @statistic[quorumTriggerSuccess](checkSignals=false; title="Succes quorum narrative"; source=quorumTriggerSuccess; record=vector,mean,sum; unit="ratio"; interpolationmode=none);
 
         // Statistiques Results C
-        @statistic[commOverhead](title="Surcharge reseau (bytes)"; source=commOverhead; record=vector,sum,mean; unit="bytes"; interpolationmode=linear);
-        @statistic[infoLeak](title="Fuite informationnelle (nats)"; source=infoLeak; record=vector,mean,max; unit="nats"; interpolationmode=linear);
-        @statistic[spoofDetection](title="Detection injection adverse"; source=spoofDetection; record=vector,mean; unit="ratio"; interpolationmode=none);
+        @statistic[commOverhead](checkSignals=false; title="Surcharge reseau (bytes)"; source=commOverhead; record=vector,sum,mean; unit="bytes"; interpolationmode=linear);
+        @statistic[infoLeak](checkSignals=false; title="Fuite informationnelle (nats)"; source=infoLeak; record=vector,mean,max; unit="nats"; interpolationmode=linear);
+        @statistic[spoofDetection](checkSignals=false; title="Detection injection adverse"; source=spoofDetection; record=vector,mean; unit="ratio"; interpolationmode=none);
 
         // Statistiques Results D
-        @statistic[performanceDrop](title="Chute performance (delta H)"; source=performanceDrop; record=vector,mean,stats; unit="bits"; interpolationmode=none);
-        @statistic[gracefulDegradation](title="Degradation gracieuse"; source=gracefulDegradation; record=vector,mean; unit="bits/loss_unit"; interpolationmode=linear);
+        @statistic[performanceDrop](checkSignals=false; title="Chute performance (delta H)"; source=performanceDrop; record=vector,mean,stats; unit="bits"; interpolationmode=none);
+        @statistic[gracefulDegradation](checkSignals=false; title="Degradation gracieuse"; source=gracefulDegradation; record=vector,mean; unit="bits/loss_unit"; interpolationmode=linear);
 
     gates:
         // Gates UDP pour la communication stigmergique

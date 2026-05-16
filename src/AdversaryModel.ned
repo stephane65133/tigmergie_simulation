@@ -13,10 +13,10 @@ simple AdversaryModel
 
         @display("i=block/cogwheel;p=820,500");
 
-        @statistic[suspicionLevel](title="Suspicion level"; source=suspicionLevel; record=vector,mean);
-        @statistic[beliefMax](title="Belief max_g b_t(g)"; source=beliefMax; record=vector,mean,max);
-        @statistic[entropyBelief](title="H(b_t) adversary view"; source=entropyBelief; record=vector,mean; unit="bits");
-        @statistic[attentionEntropy](title="Attention weight entropy"; source=attentionEntropy; record=vector,mean);
-        @statistic[probingTarget](title="Probing target domain"; source=probingTarget; record=vector);
-        @statistic[strategyShift](title="Strategy shift event"; source=strategyShift; record=vector,sum);
+        @statistic[suspicionLevel](checkSignals=false; title="Suspicion level"; source=suspicionLevel; record=vector,mean);
+        @statistic[beliefMax](checkSignals=false; title="Belief max_g b_t(g)"; source=beliefMax; record=vector,mean,max);
+        @statistic[entropyBelief](checkSignals=false; title="H(b_t) adversary view"; source=entropyBelief; record=vector,mean; unit="bits");
+        @statistic[attentionEntropy](checkSignals=false; title="Attention weight entropy"; source=attentionEntropy; record=vector,mean);
+        @statistic[probingTarget](checkSignals=false; title="Probing target domain"; source=probingTarget; record=vector);
+        @statistic[strategyShift](checkSignals=false; title="Strategy shift event"; source=strategyShift; record=vector,sum);
 }

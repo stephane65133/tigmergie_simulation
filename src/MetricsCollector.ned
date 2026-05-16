@@ -12,8 +12,8 @@ simple MetricsCollector
 
         @display("i=block/table;p=820,580");
 
-        @statistic[globalH](title="Global H(bt)"; source=globalH; record=vector,mean; unit="bits");
-        @statistic[globalOmega](title="Global Omega_t"; source=globalOmega; record=vector,mean);
-        @statistic[globalOverhead](title="Global comm overhead"; source=globalOverhead; record=vector,last; unit="bytes");
-        @statistic[alertSuspicion](title="Suspicion alert time"; source=alertSuspicion; record=vector);
+        @statistic[globalH](checkSignals=false; title="Global H(bt)"; source=globalH; record=vector,mean; unit="bits");
+        @statistic[globalOmega](checkSignals=false; title="Global Omega_t"; source=globalOmega; record=vector,mean);
+        @statistic[globalOverhead](checkSignals=false; title="Global comm overhead"; source=globalOverhead; record=vector,last; unit="bytes");
+        @statistic[alertSuspicion](checkSignals=false; title="Suspicion alert time"; source=alertSuspicion; record=vector);
 }

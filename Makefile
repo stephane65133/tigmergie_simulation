@@ -1,141 +1,95 @@
-#
-# OMNeT++/OMNEST Makefile for stigmergie
-#
-# This file was generated with the command:
-#  opp_makemake -f --deep -o stigmergie -KINET_PROJ=/home/lucky/Desktop/inet -DINET_IMPORT -I/home/lucky/Desktop/inet/src -L/home/lucky/Desktop/inet/src -lINET
-#
+# =============================================================================
+# Makefile — Stigmergie (version sans opp_configfilepath)
+# Remplace le Makefile existant dans stigmergie_fixed/
+# =============================================================================
 
-# Name of target to be created (-o option)
-TARGET_DIR = .
-TARGET_NAME = stigmergie$(D)
-TARGET = $(TARGET_NAME)$(EXE_SUFFIX)
-TARGET_FILES = $(TARGET_DIR)/$(TARGET)
+OMNET_ROOT  ?= $(HOME)/Desktop/omnetpp-6.4.0
+INET_ROOT   ?= $(HOME)/Desktop/inet
+PROJECT_DIR := $(shell pwd)
+RESULTS_DIR := $(PROJECT_DIR)/results
+OUT_DIR     := $(PROJECT_DIR)/out/clang-release/src
+NED_PATH    := $(PROJECT_DIR)/src:$(PROJECT_DIR)/simulations:$(INET_ROOT)/src
+PYTHON      ?= python3
 
-# User interface (uncomment one) (-u option)
-USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(QTENV_LIBS) $(CMDENV_LIBS)
-#USERIF_LIBS = $(CMDENV_LIBS)
-#USERIF_LIBS = $(QTENV_LIBS)
+# Tous les targets sourcent setenv via le script run.sh / build_and_run.sh
+# car make ne peut pas sourcer un script shell directement
 
-# C++ include paths (with -I)
-INCLUDE_PATH = -I/home/lucky/Desktop/inet/src
+.PHONY: all build run-debug run-E1 run-E1-all run-E2 run-E3 run-E4 run-E5 \
+        run-all export-csv figures clean help
 
-# Additional object and library files to link with
-EXTRA_OBJS =
+# =============================================================================
+# Build
+# =============================================================================
+all: build
 
-# Additional libraries (-L, -l options)
-LIBS = $(LDFLAG_LIBPATH)/home/lucky/Desktop/inet/src  -lINET
+build:
+	bash build_and_run.sh --build-only 2>/dev/null || \
+	bash -c "source $(OMNET_ROOT)/setenv && \
+	    mkdir -p $(OUT_DIR) && \
+	    for m in AdversaryModel DomainNode MetricsCollector PheromoneField; do \
+	        g++ -std=c++17 -fPIC -O2 -DNDEBUG -DINET_IMPORT \
+	            -I$(INET_ROOT)/src -I$(OMNET_ROOT)/include \
+	            -c src/$$m.cc -o $(OUT_DIR)/$$m.o; \
+	    done && \
+	    g++ -shared -fPIC -o $(OUT_DIR)/libstigmergie.so \
+	        $(OUT_DIR)/AdversaryModel.o $(OUT_DIR)/DomainNode.o \
+	        $(OUT_DIR)/MetricsCollector.o $(OUT_DIR)/PheromoneField.o \
+	        -L$(INET_ROOT)/src -lINET && \
+	    echo 'Build OK'"
 
-# Output directory
-PROJECT_OUTPUT_DIR = out
-PROJECTRELATIVE_PATH =
-O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
+# =============================================================================
+# Simulations
+# =============================================================================
+run-debug:
+	bash run.sh Debug_Quick
 
-# Object files for local .cc, .msg and .sm files
-OBJS = $O/src/AdversaryModel.o $O/src/DomainNode.o $O/src/MetricsCollector.o $O/src/PheromoneField.o
+run-E1:
+	bash run.sh E1_Proposed
 
-# Message files
-MSGFILES =
+run-E1-all:
+	@for cfg in E1_CentralizedPPO E1_StaticAllocation \
+	            E1_Independent E1_GNNCoordinated E1_Proposed; do \
+	    bash run.sh $$cfg & \
+	done; wait
+	@echo "E1 terminé"
 
-# SM files
-SMFILES =
+run-E2:
+	bash run.sh E2_Proposed
 
-# Other makefile variables (-K)
-INET_PROJ=/home/lucky/Desktop/inet
+run-E3:
+	bash run.sh E3_Proposed
 
-#------------------------------------------------------------------------------
+run-E4:
+	bash run.sh E4_Proposed
 
-# Pull in OMNeT++ configuration (Makefile.inc)
+run-E5:
+	bash run.sh E5_Proposed
 
-ifneq ("$(OMNETPP_CONFIGFILE)","")
-CONFIGFILE = $(OMNETPP_CONFIGFILE)
-else
-CONFIGFILE = $(shell opp_configfilepath)
-endif
+run-all: run-E1-all run-E2 run-E3 run-E4 run-E5
 
-ifeq ("$(wildcard $(CONFIGFILE))","")
-$(error Config file '$(CONFIGFILE)' does not exist -- add the OMNeT++ bin directory to the path so that opp_configfilepath can be found, or set the OMNETPP_CONFIGFILE variable to point to Makefile.inc)
-endif
+# =============================================================================
+# Export et figures — utilise le script autonome (source setenv inclus)
+# =============================================================================
+export-csv:
+	bash export_results.sh
 
-include $(CONFIGFILE)
+figures:
+	bash export_results.sh
 
-# Simulation kernel and user interface libraries
-OMNETPP_LIBS = $(OPPMAIN_LIB) $(USERIF_LIBS) $(KERNEL_LIBS) $(SYS_LIBS)
-ifneq ($(PLATFORM),win32)
-LIBS += -Wl,-rpath,$(abspath /home/lucky/Desktop/inet/src)
-endif
-
-COPTS = $(CFLAGS) $(IMPORT_DEFINES) -DINET_IMPORT $(INCLUDE_PATH) -I$(OMNETPP_INCL_DIR)
-MSGCOPTS = $(INCLUDE_PATH)
-SMCOPTS =
-
-# we want to recompile everything if COPTS changes,
-# so we store COPTS into $COPTS_FILE (if COPTS has changed since last build)
-# and make the object files depend on it
-COPTS_FILE = $O/.last-copts
-ifneq ("$(COPTS)","$(shell cat $(COPTS_FILE) 2>/dev/null || echo '')")
-  $(shell $(MKPATH) "$O")
-  $(file >$(COPTS_FILE),$(COPTS))
-endif
-
-#------------------------------------------------------------------------------
-# User-supplied makefile fragment(s)
-#------------------------------------------------------------------------------
-
-# Main target
-all: $(TARGET_FILES)
-
-$(TARGET_DIR)/% :: $O/%
-	@mkdir -p $(TARGET_DIR)
-	$(Q)$(LN) $< $@
-ifeq ($(TOOLCHAIN_NAME),clang-msabi)
-	-$(Q)-$(LN) $(<:%.dll=%.lib) $(@:%.dll=%.lib) 2>/dev/null
-
-$O/$(TARGET_NAME).pdb: $O/$(TARGET)
-endif
-
-$O/$(TARGET): $(OBJS)  $(wildcard $(EXTRA_OBJS)) Makefile $(CONFIGFILE)
-	@$(MKPATH) $O
-	@echo Creating executable: $@
-	$(Q)$(CXX) $(LDFLAGS) -o $O/$(TARGET) $(OBJS) $(EXTRA_OBJS) $(AS_NEEDED_OFF) $(WHOLE_ARCHIVE_ON) $(LIBS) $(WHOLE_ARCHIVE_OFF) $(OMNETPP_LIBS)
-
-.PHONY: all clean cleanall depend msgheaders smheaders
-
-# disabling all implicit rules
-.SUFFIXES :
-.PRECIOUS : %_m.h %_m.cc
-
-$O/%.o: %.cc $(COPTS_FILE) | msgheaders smheaders
-	@$(MKPATH) $(dir $@)
-	$(qecho) "$<"
-	$(Q)$(CXX) -c $(CXXFLAGS) $(COPTS) -o $@ $<
-
-%_m.cc %_m.h: %.msg
-	$(qecho) MSGC: $<
-	$(Q)$(MSGC) -s _m.cc -MD -MP -MF $O/$(basename $<)_m.h.d $(MSGCOPTS) $<
-
-%_sm.cc %_sm.h: %.sm
-	$(qecho) SMC: $<
-	$(Q)$(SMC) -c++ -suffix cc $(SMCOPTS) $<
-
-msgheaders: $(MSGFILES:.msg=_m.h)
-
-smheaders: $(SMFILES:.sm=_sm.h)
-
+# =============================================================================
+# Nettoyage
+# =============================================================================
 clean:
-	$(qecho) Cleaning $(TARGET)
-	$(Q)-rm -rf $O
-	$(Q)-rm -f $(TARGET_FILES)
-	$(Q)-rm -f $(call opp_rwildcard, . , *_m.cc *_m.h *_sm.cc *_sm.h)
-
-cleanall:
-	$(Q)$(CLEANALL_COMMAND)
-	$(Q)-rm -rf $(PROJECT_OUTPUT_DIR)
+	rm -rf out/ results/raw/*.vec results/raw/*.sca
 
 help:
-	@echo "$$HELP_SYNOPSYS"
-	@echo "$$HELP_TARGETS"
-	@echo "$$HELP_VARIABLES"
-	@echo "$$HELP_EXAMPLES"
-
-# include all dependencies
--include $(OBJS:%=%.d) $(MSGFILES:%.msg=$O/%_m.h.d)
+	@echo ""
+	@echo "Usage:"
+	@echo "  make build         Compiler le projet"
+	@echo "  make run-debug     Test rapide (1 run, 20s)"
+	@echo "  make run-E1        Expérience E1 (30 runs)"
+	@echo "  make run-E1-all    E1 toutes méthodes"
+	@echo "  make run-E2/E3/E4/E5"
+	@echo "  make run-all       Toutes les expériences"
+	@echo "  make export-csv    Export CSV + figures"
+	@echo ""

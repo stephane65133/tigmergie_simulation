@@ -105,8 +105,6 @@ omnetpp
 Clone INET:
 
 ```bash
-cd ~/Desktop
-
 git clone https://github.com/inet-framework/inet.git
 ```
 

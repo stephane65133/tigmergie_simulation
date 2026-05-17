@@ -131,6 +131,55 @@ Move into the project directory:
 cd stigmergie_Simulation
 ```
 
+---
+
+## 3.1 Create and Activate a Python Virtual Environment
+
+Create a virtual environment:
+
+```bash
+python3 -m venv .venv
+```
+
+Activate the virtual environment:
+
+```bash
+source .venv/bin/activate
+```
+
+Explanation:
+
+* `.venv` isolates Python dependencies for the project
+* avoids conflicts with system-wide Python packages
+* recommended for reproducible experiments and plotting scripts
+
+Install Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Explanation:
+
+* installs all required Python libraries
+* required for CSV export utilities and figure generation scripts
+
+Optional: save installed dependencies
+
+```bash
+pip freeze > requirements.txt
+```
+
+Deactivate the environment when finished:
+
+```bash
+deactivate
+```
+
+---
+
+## 3.2 Load OMNeT++ Environment
+
 Load OMNeT++ environment:
 
 ```bash
@@ -383,7 +432,9 @@ Purpose:
 Generate IEEE-ready figures:
 
 ```bash
-make figures
+python3 scripts/plot_results.py --all \
+    --input  results/processed \
+    --output results/figures
 ```
 
 Purpose:
@@ -391,6 +442,20 @@ Purpose:
 * generates publication-quality plots
 * stores figures in `results/figures`
 * prepares graphics for papers and presentations
+
+---
+
+## Rebuild All Results and Figures
+
+```bash
+bash export_results.sh
+```
+
+Purpose:
+
+* exports CSV datasets
+* regenerates all processed results
+* rebuilds all publication figures automatically
 
 ---
 

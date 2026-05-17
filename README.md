@@ -128,7 +128,7 @@ make -j$(nproc)
 Move into the project directory:
 
 ```bash
-cd stigmergie_fixed
+cd stigmergie_Simulation
 ```
 
 Load OMNeT++ environment:
